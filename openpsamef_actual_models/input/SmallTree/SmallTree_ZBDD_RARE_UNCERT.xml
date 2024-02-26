@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report>
+  <information>
+    <software name="SCRAM" version="0.16.2" contacts="https://scram-pra.org"/>
+    <time>2023-11-23T03:48:27</time>
+    <performance>
+      <calculation-time name="top">
+        <products>0.00148395</products>
+        <probability>1.6566e-05</probability>
+        <uncertainty>0.0893858</uncertainty>
+      </calculation-time>
+    </performance>
+    <calculated-quantity name="Minimal Cut Sets">
+      <calculation-method name="Zero-Suppressed Binary Decision Diagram">
+        <limits>
+          <product-order>20</product-order>
+        </limits>
+      </calculation-method>
+    </calculated-quantity>
+    <calculated-quantity name="Probability Analysis" definition="Quantitative analysis of failure probability or unavailability" approximation="rare-event">
+      <calculation-method name="Rare-Event Approximation">
+        <limits>
+          <mission-time>8760</mission-time>
+        </limits>
+      </calculation-method>
+    </calculated-quantity>
+    <calculated-quantity name="Uncertainty Analysis" definition="Calculation of uncertainties with the Monte Carlo method">
+      <calculation-method name="Monte Carlo">
+        <limits>
+          <number-of-trials>10000</number-of-trials>
+          <seed>0</seed>
+        </limits>
+      </calculation-method>
+    </calculated-quantity>
+    <model-features>
+      <gates>3</gates>
+      <basic-events>4</basic-events>
+      <fault-trees>1</fault-trees>
+    </model-features>
+  </information>
+  <results>
+    <sum-of-products name="top" basic-events="4" products="2" probability="0.0269585" distribution="0 2">
+      <product order="2" probability="0.0134793" contribution="0.5">
+        <basic-event name="e1"/>
+        <basic-event name="e2"/>
+      </product>
+      <product order="2" probability="0.0134793" contribution="0.5">
+        <basic-event name="e3"/>
+        <basic-event name="e4"/>
+      </product>
+    </sum-of-products>
+    <measure name="top">
+      <mean value="0.025526"/>
+      <standard-deviation value="0.0225449"/>
+      <confidence-range percentage="95" lower-bound="0.0250841" upper-bound="0.0259679"/>
+      <error-factor percentage="95" value="1.04518"/>
+      <quantiles number="20">
+        <quantile number="1" value="0.05" lower-bound="0" upper-bound="0.00529765"/>
+        <quantile number="2" value="0.1" lower-bound="0.00529765" upper-bound="0.00694835"/>
+        <quantile number="3" value="0.15" lower-bound="0.00694835" upper-bound="0.00839561"/>
+        <quantile number="4" value="0.2" lower-bound="0.00839561" upper-bound="0.00975413"/>
+        <quantile number="5" value="0.25" lower-bound="0.00975413" upper-bound="0.0111199"/>
+        <quantile number="6" value="0.3" lower-bound="0.0111199" upper-bound="0.0126212"/>
+        <quantile number="7" value="0.35" lower-bound="0.0126212" upper-bound="0.0141772"/>
+        <quantile number="8" value="0.4" lower-bound="0.0141772" upper-bound="0.0156233"/>
+        <quantile number="9" value="0.45" lower-bound="0.0156233" upper-bound="0.0171985"/>
+        <quantile number="10" value="0.5" lower-bound="0.0171985" upper-bound="0.0190626"/>
+        <quantile number="11" value="0.55" lower-bound="0.0190626" upper-bound="0.021003"/>
+        <quantile number="12" value="0.6" lower-bound="0.021003" upper-bound="0.0230231"/>
+        <quantile number="13" value="0.65" lower-bound="0.0230231" upper-bound="0.0257428"/>
+        <quantile number="14" value="0.7" lower-bound="0.0257428" upper-bound="0.0285718"/>
+        <quantile number="15" value="0.75" lower-bound="0.0285718" upper-bound="0.031989"/>
+        <quantile number="16" value="0.8" lower-bound="0.031989" upper-bound="0.0366949"/>
+        <quantile number="17" value="0.85" lower-bound="0.0366949" upper-bound="0.042774"/>
+        <quantile number="18" value="0.9" lower-bound="0.042774" upper-bound="0.0514806"/>
+        <quantile number="19" value="0.95" lower-bound="0.0514806" upper-bound="0.0672856"/>
+        <quantile number="20" value="1" lower-bound="0.0672856" upper-bound="0.252333"/>
+      </quantiles>
+      <histogram number="20">
+        <bin number="1" value="0.4188" lower-bound="0.00100414" upper-bound="0.0162075"/>
+        <bin number="2" value="0.3242" lower-bound="0.0162075" upper-bound="0.0314108"/>
+        <bin number="3" value="0.1303" lower-bound="0.0314108" upper-bound="0.0466142"/>
+        <bin number="4" value="0.0637" lower-bound="0.0466142" upper-bound="0.0618175"/>
+        <bin number="5" value="0.0295" lower-bound="0.0618175" upper-bound="0.0770208"/>
+        <bin number="6" value="0.0148" lower-bound="0.0770208" upper-bound="0.0922242"/>
+        <bin number="7" value="0.0071" lower-bound="0.0922242" upper-bound="0.107427"/>
+        <bin number="8" value="0.004" lower-bound="0.107427" upper-bound="0.122631"/>
+        <bin number="9" value="0.0025" lower-bound="0.122631" upper-bound="0.137834"/>
+        <bin number="10" value="0.0019" lower-bound="0.137834" upper-bound="0.153038"/>
+        <bin number="11" value="0.0009" lower-bound="0.153038" upper-bound="0.168241"/>
+        <bin number="12" value="0.0009" lower-bound="0.168241" upper-bound="0.183444"/>
+        <bin number="13" value="0.0004" lower-bound="0.183444" upper-bound="0.198648"/>
+        <bin number="14" value="0.0005" lower-bound="0.198648" upper-bound="0.213851"/>
+        <bin number="15" value="0" lower-bound="0.213851" upper-bound="0.229054"/>
+        <bin number="16" value="0.0003" lower-bound="0.229054" upper-bound="0.244258"/>
+        <bin number="17" value="0.0001" lower-bound="0.244258" upper-bound="0.259461"/>
+        <bin number="18" value="0" lower-bound="0.259461" upper-bound="0.274664"/>
+        <bin number="19" value="0" lower-bound="0.274664" upper-bound="0.289868"/>
+        <bin number="20" value="0" lower-bound="0.289868" upper-bound="0.305071"/>
+      </histogram>
+    </measure>
+  </results>
+</report>
