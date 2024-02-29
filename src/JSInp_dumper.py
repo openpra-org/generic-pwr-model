@@ -10,10 +10,10 @@ class JSONDumper:
             'version': self._handle_null_values(self.quantification_input.version),
             'saphiresolveinput': {
                 'header': self._dump_header(self.quantification_input.saphiresolveinput['header']),
-                'sysgatelist': [self._dump_sysgate(gate) for gate in self.quantification_input.saphiresolveinput.get('sysgatelist', [])],
-                'faulttreelist': [self._dump_faulttree(tree) for tree in self.quantification_input.saphiresolveinput.get('faulttreelist', [])],
-                'sequencelist': [self._dump_sequence(sequence) for sequence in self.quantification_input.saphiresolveinput.get('sequencelist', [])],
-                'eventlist': [self._dump_event(event) for event in self.quantification_input.saphiresolveinput.get('eventlist', [])]
+                'sysgatelist': [self._dump_sysgate(gate) for gate in self.quantification_input.saphiresolveinput.get('sysgatelist', []) if gate is not None],
+                'faulttreelist': [self._dump_faulttree(tree) for tree in self.quantification_input.saphiresolveinput.get('faulttreelist', []) if tree is not None],
+                'sequencelist': [self._dump_sequence(sequence) for sequence in self.quantification_input.saphiresolveinput.get('sequencelist', []) if sequence is not None],
+                'eventlist': [self._dump_event(event) for event in self.quantification_input.saphiresolveinput.get('eventlist', []) if event is not None]
             }
         }
 
@@ -23,7 +23,7 @@ class JSONDumper:
 
     def _handle_null_values(self, value):
         if value is None:
-            return ""
+            return None
         return value
 
     def _dump_header(self, header):
@@ -43,20 +43,20 @@ class JSONDumper:
             'workspacepair': header.workspacepair.__dict__,
             'iworkspacepair': header.iworkspacepair.__dict__
         }
-        return {key: self._handle_null_values(val) for key, val in header_dict.items()}
+        return {key: self._handle_null_values(val) for key, val in header_dict.items() if val is not None}
 
     def _dump_sysgate(self, gate):
-        return {key: self._handle_null_values(val) for key, val in gate.__dict__.items()}
+        return {key: self._handle_null_values(val) for key, val in gate.__dict__.items() if val is not None}
 
     def _dump_faulttree(self, tree):
         fault_tree_dict = {
             'ftheader': self._handle_null_values(tree.ftheader),
-            'gatelist': [{key: self._handle_null_values(val) for key, val in gate.__dict__.items()} for gate in tree.gatelist]
+            'gatelist': [{key: self._handle_null_values(val) for key, val in gate.__dict__.items() if val is not None} for gate in tree.gatelist]
         }
-        return {key: self._handle_null_values(val) for key, val in fault_tree_dict.items()}
+        return {key: self._handle_null_values(val) for key, val in fault_tree_dict.items() if val is not None}
 
     def _dump_sequence(self, sequence):
-        return {key: self._handle_null_values(val) for key, val in sequence.__dict__.items()}
+        return {key: self._handle_null_values(val) for key, val in sequence.__dict__.items() if val is not None}
 
     def _dump_event(self, event):
-        return {key: self._handle_null_values(val) for key, val in event.__dict__.items()}
+        return {key: self._handle_null_values(val) for key, val in event.__dict__.items() if val is not None}
