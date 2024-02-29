@@ -1,5 +1,6 @@
 from ctypes import *
 import os
+import time
 
 try:
     # Load the DLL
@@ -15,9 +16,16 @@ def solve_json_file(input_file_path, output_directory):
         output_file_name = os.path.splitext(os.path.basename(input_file_path))[0] + ".JSCut"
         output_file_path = os.path.join(output_directory, output_file_name)
 
+        # Measure solving time
+        start_time = time.time()
+
         # Call the SolveFromInput function from the DLL
         mydll.SolveFromInput(input_file_path, output_file_path)
-        print(f"Solved {input_file_path} and saved as {output_file_path}")  # Print a message indicating successful completion
+
+        end_time = time.time()
+        solving_time = end_time - start_time
+
+        print(f"Solved {input_file_path} in {solving_time:.2f} seconds and saved as {output_file_path}")  # Print a message including solving time
     except OSError as e:
         print(f"Error solving {input_file_path}: {e}")
 
