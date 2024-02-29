@@ -11,7 +11,9 @@ except OSError as e:
 
 try:
     # Call the SolveFromInput function from the DLL
-    mydll.SolveFromInput("C:\\Users\\egeme\\Downloads\\LLOCA.JSInp", "C:\\Users\\egeme\\Downloads\\LLOCA.JSCut")
+    JSInp_file_path = r"C:\Users\egeme\Desktop\repo\Gitlab\Enhancement-of-PRA-Tools\Model-Exchange\model-converter\saphsolve_actual_models\EQK-BIN1_et_Grp-1_24-02-26_15-57-10.JSInp"
+    JSCut_file_path = r"C:\Users\egeme\Desktop\repo\Gitlab\Enhancement-of-PRA-Tools\Model-Exchange\model-converter\dumped_saphsolve_actual_models\dumped_EQK-BIN1_et_Grp-1_24-02-26_15-57-10.JSCut"
+    mydll.SolveFromInput(JSInp_file_path, JSCut_file_path)
     print("Done")  # Print a message indicating successful completion
 except OSError as e:
     print("Error:", e)
