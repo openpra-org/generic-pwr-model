@@ -7,19 +7,24 @@ class JSONDumper:
     def dump_to_json(self, file_path):
         # Convert QuantificationInput object to a dictionary
         quantification_input_dict = {
-            'version': self.quantification_input.version,
+            'version': self._handle_null_values(self.quantification_input.version),
             'saphiresolveinput': {
                 'header': self._dump_header(self.quantification_input.saphiresolveinput['header']),
-                'sysgatelist': [self._dump_sysgate(gate) for gate in self.quantification_input.saphiresolveinput['sysgatelist']],
-                'faulttreelist': [self._dump_faulttree(tree) for tree in self.quantification_input.saphiresolveinput['faulttreelist']],
-                'sequencelist': [self._dump_sequence(sequence) for sequence in self.quantification_input.saphiresolveinput['sequencelist']],
-                'eventlist': [self._dump_event(event) for event in self.quantification_input.saphiresolveinput['eventlist']]
+                'sysgatelist': [self._dump_sysgate(gate) for gate in self.quantification_input.saphiresolveinput.get('sysgatelist', [])],
+                'faulttreelist': [self._dump_faulttree(tree) for tree in self.quantification_input.saphiresolveinput.get('faulttreelist', [])],
+                'sequencelist': [self._dump_sequence(sequence) for sequence in self.quantification_input.saphiresolveinput.get('sequencelist', [])],
+                'eventlist': [self._dump_event(event) for event in self.quantification_input.saphiresolveinput.get('eventlist', [])]
             }
         }
 
         # Dump the dictionary to a JSON file
         with open(file_path, 'w') as json_file:
             json.dump(quantification_input_dict, json_file, indent=4)
+
+    def _handle_null_values(self, value):
+        if value is None:
+            return ""
+        return value
 
     def _dump_header(self, header):
         header_dict = {
@@ -38,20 +43,20 @@ class JSONDumper:
             'workspacepair': header.workspacepair.__dict__,
             'iworkspacepair': header.iworkspacepair.__dict__
         }
-        return header_dict
+        return {key: self._handle_null_values(val) for key, val in header_dict.items()}
 
     def _dump_sysgate(self, gate):
-        return gate.__dict__
+        return {key: self._handle_null_values(val) for key, val in gate.__dict__.items()}
 
     def _dump_faulttree(self, tree):
         fault_tree_dict = {
-            'ftheader': tree.ftheader,
-            'gatelist': [gate.__dict__ for gate in tree.gatelist]
+            'ftheader': self._handle_null_values(tree.ftheader),
+            'gatelist': [{key: self._handle_null_values(val) for key, val in gate.__dict__.items()} for gate in tree.gatelist]
         }
-        return fault_tree_dict
+        return {key: self._handle_null_values(val) for key, val in fault_tree_dict.items()}
 
     def _dump_sequence(self, sequence):
-        return sequence.__dict__
+        return {key: self._handle_null_values(val) for key, val in sequence.__dict__.items()}
 
     def _dump_event(self, event):
-        return event.__dict__
+        return {key: self._handle_null_values(val) for key, val in event.__dict__.items()}
