@@ -17,13 +17,22 @@ def solve_json_file(input_file_path, output_directory):
         output_file_name = os.path.splitext(os.path.basename(input_file_path))[0] + ".JSCut"
         output_file_path = os.path.join(output_directory, output_file_name)
 
+        # Measure solving time
+        start_time = time.time()
+
         # Call the SolveFromInput function from the DLL
         mydll.SolveFromInput(input_file_path, output_file_path)
+
+        end_time = time.time()
+        solving_time = end_time - start_time
+
+        print(
+            f"Solved {input_file_path} in {solving_time:.2f} seconds and saved as {output_file_path}")  # Print a message including solving time
     except OSError as e:
         print(f"Error solving {input_file_path}: {e}")
 
 
-def solve_files_in_thread(files, output_directory):
+def solve_files_in_thread(files, input_directory, output_directory):
     for file_name in files:
         input_file_path = os.path.join(input_directory, file_name)
 
@@ -32,8 +41,8 @@ def solve_files_in_thread(files, output_directory):
 
 
 def main():
-    input_directory = r"C:\Users\egeme\Desktop\repo\Gitlab\Enhancement-of-PRA-Tools\Model-Exchange\model-converter\dumped_saphsolve_actual_models"
-    output_directory = r"C:\Users\egeme\Desktop\repo\Gitlab\Enhancement-of-PRA-Tools\Model-Exchange\model-converter\output_dumped_saphsolve_actual_models"
+    input_directory = r"C:\Users\egeme\Desktop\repo\Gitlab\Enhancement-of-PRA-Tools\Model-Exchange\model-converter\saphsolve_actual_models"
+    output_directory = r"C:\Users\egeme\Desktop\repo\Gitlab\Enhancement-of-PRA-Tools\Model-Exchange\model-converter\output_saphsolve_actual_models"
 
     # List all JSON files in the input directory
     json_files = [file for file in os.listdir(input_directory) if file.endswith('.JSInp')]
@@ -42,7 +51,7 @@ def main():
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
 
-    # Measure serial solution time
+    # # Measure serial solution time
     serial_start_time = time.time()
 
     # Solve each JSON file serially
@@ -70,7 +79,7 @@ def main():
     # Create and start threads
     threads = []
     for chunk in chunks:
-        thread = threading.Thread(target=solve_files_in_thread, args=(chunk, output_directory))
+        thread = threading.Thread(target=solve_files_in_thread, args=(chunk, input_directory, output_directory))
         threads.append(thread)
         thread.start()
 
