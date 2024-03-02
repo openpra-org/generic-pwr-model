@@ -1,3 +1,7 @@
+"""
+The script uses the ctypes library to load the DLL and call the SolveFromInput function from the DLL.
+It uses the threading library to solve the JSON files in parallel using multiple threads.
+"""
 import os
 import threading
 from ctypes import *
