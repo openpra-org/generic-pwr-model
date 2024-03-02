@@ -1,3 +1,7 @@
+"""
+This script is used to solve all JSON files in a directory using the Saphire 8 Solver DLL.
+It uses the ctypes library to load the DLL and call the SolveFromInput function from the DLL.
+"""
 from ctypes import *
 import os
 import time
