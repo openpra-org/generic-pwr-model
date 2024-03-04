@@ -1,35 +1,70 @@
 import os
+import json
 from JSInp_parser import JSONParser
 from JSInp_dumper import JSONDumper
-import json
+from XML_parser import XMLParser
+from XML_dumper import XMLDumper
 
 def main():
-    input_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/saphsolve_actual_models/'
-    output_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/dumped_saphsolve_actual_models/'
+    # # Input and output directories for JSON files
+    # json_input_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/saphsolve_actual_models/ETH_BWR/'
+    # json_output_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/dumped_saphsolve_actual_models/ETH_BWR/'
 
-    # List all JSON files in the input directory
-    json_files = [file for file in os.listdir(input_directory) if file.endswith('.JSInp')]
+    # Input and output directories for XML files
+    xml_input_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/openpsamef_actual_models/input/EventTrees/gas_leak/'
+    xml_output_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/dumped_openpsamef_actual_models/'
 
-    # Parse each JSON file and dump it
-    for file_name in json_files:
-        input_file_path = os.path.join(input_directory, file_name)
-        output_file_path = os.path.join(output_directory, f'dumped_{file_name}')
+    # # List all JSON files in the JSON input directory
+    # json_files = [file for file in os.listdir(json_input_directory) if file.endswith('.JSInp')]
+    #
+    # # Parse each JSON file and dump it
+    # for file_name in json_files:
+    #     input_file_path = os.path.join(json_input_directory, file_name)
+    #     output_file_path = os.path.join(json_output_directory, f'dumped_{file_name}')
+    #
+    #     print(f"Processing JSON file: {input_file_path}")
+    #
+    #     try:
+    #         # Parse the JSON file
+    #         json_parser = JSONParser(input_file_path)
+    #         parsed_object = json_parser.parse_to_object()
+    #
+    #         # Dump the parsed data into another JSON file
+    #         json_dumper = JSONDumper(parsed_object)
+    #         json_dumper.dump_to_json(output_file_path)
+    #
+    #         print(f"JSON file {file_name} parsed and dumped successfully.")
+    #     except json.JSONDecodeError as e:
+    #         print(f"Error in JSON file {file_name}: {e}. Skipping parsing and dumping.")
 
-        print(f"Processing file: {input_file_path}")
+    # List all XML files in the XML input directory
+    xml_files = [file for file in os.listdir(xml_input_directory) if file.endswith('.xml')]
 
-        # Validate the JSON file
+    # Create XML parser
+    xml_parser = XMLParser()
+
+    # Create XML dumper
+    xml_dumper = XMLDumper()
+
+    # Parse each XML file and dump it
+    for file_name in xml_files:
+        input_file_path = os.path.join(xml_input_directory, file_name)
+        output_file_path = os.path.join(xml_output_directory, f'dumped_{file_name}')
+
+        print(f"Processing XML file: {input_file_path}")
+
         try:
-            with open(input_file_path, 'r') as file:
-                json.load(file)
-            # Parse the JSON file if it's valid
-            json_parser = JSONParser(input_file_path)
-            parsed_saphsolve_input_object = json_parser.parse_to_object()
-            # Dump the parsed data back into another JSON file
-            json_dumper = JSONDumper(parsed_saphsolve_input_object)
-            json_dumper.dump_to_json(output_file_path)
-            print(f"File {file_name} parsed and dumped successfully.")
-        except json.JSONDecodeError as e:
-            print(f"Error in file {file_name}: {e}. Skipping parsing and dumping.")
+            # Parse the XML file
+            parsed_object = xml_parser.parse(input_file_path)
+
+            # Dump the parsed data into another XML file
+            xml_dumper.dump_object_to_xml(parsed_object, output_file_path)
+
+            print(f"XML file {file_name} parsed and dumped successfully.")
+
+        except Exception as e:
+            print(f"Error in XML file {file_name}: {e}. Skipping parsing and dumping.")
+
 
 if __name__ == "__main__":
     main()
