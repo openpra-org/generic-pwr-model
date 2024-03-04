@@ -7,35 +7,35 @@ from XML_dumper import XMLDumper
 
 def main():
     # # Input and output directories for JSON files
-    # json_input_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/saphsolve_actual_models/ETH_BWR/'
-    # json_output_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/dumped_saphsolve_actual_models/ETH_BWR/'
+    json_input_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/saphsolve_synthetical_models/'
+    json_output_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/dumped_saphsolve_synthetical_models/'
 
     # Input and output directories for XML files
-    xml_input_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/openpsamef_actual_models/input/EventTrees/gas_leak/'
-    xml_output_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/dumped_openpsamef_actual_models/'
+    xml_input_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/openpsamef_synthetical_models/'
+    xml_output_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/dumped_openpsamef_synthetical_models/'
 
-    # # List all JSON files in the JSON input directory
-    # json_files = [file for file in os.listdir(json_input_directory) if file.endswith('.JSInp')]
-    #
-    # # Parse each JSON file and dump it
-    # for file_name in json_files:
-    #     input_file_path = os.path.join(json_input_directory, file_name)
-    #     output_file_path = os.path.join(json_output_directory, f'dumped_{file_name}')
-    #
-    #     print(f"Processing JSON file: {input_file_path}")
-    #
-    #     try:
-    #         # Parse the JSON file
-    #         json_parser = JSONParser(input_file_path)
-    #         parsed_object = json_parser.parse_to_object()
-    #
-    #         # Dump the parsed data into another JSON file
-    #         json_dumper = JSONDumper(parsed_object)
-    #         json_dumper.dump_to_json(output_file_path)
-    #
-    #         print(f"JSON file {file_name} parsed and dumped successfully.")
-    #     except json.JSONDecodeError as e:
-    #         print(f"Error in JSON file {file_name}: {e}. Skipping parsing and dumping.")
+    # List all JSON files in the JSON input directory
+    json_files = [file for file in os.listdir(json_input_directory) if file.endswith('.JSInp')]
+
+    # Parse each JSON file and dump it
+    for file_name in json_files:
+        input_file_path = os.path.join(json_input_directory, file_name)
+        output_file_path = os.path.join(json_output_directory, f'dumped_{file_name}')
+
+        print(f"Processing JSON file: {input_file_path}")
+
+        try:
+            # Parse the JSON file
+            json_parser = JSONParser(input_file_path)
+            parsed_json_object = json_parser.parse_to_object()
+
+            # Dump the parsed data into another JSON file
+            json_dumper = JSONDumper(parsed_json_object)
+            json_dumper.dump_to_json(output_file_path)
+
+            print(f"JSON file {file_name} parsed and dumped successfully.")
+        except json.JSONDecodeError as e:
+            print(f"Error in JSON file {file_name}: {e}. Skipping parsing and dumping.")
 
     # List all XML files in the XML input directory
     xml_files = [file for file in os.listdir(xml_input_directory) if file.endswith('.xml')]

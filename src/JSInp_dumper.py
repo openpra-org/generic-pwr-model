@@ -12,7 +12,8 @@ class JSONDumper:
                 'header': self._dump_header(self.quantification_input.saphiresolveinput['header']),
                 'sysgatelist': [self._dump_sysgate(gate) for gate in self.quantification_input.saphiresolveinput.get('sysgatelist', []) if gate is not None],
                 'faulttreelist': [self._dump_faulttree(tree) for tree in self.quantification_input.saphiresolveinput.get('faulttreelist', []) if tree is not None],
-                'sequencelist': [self._dump_sequence(sequence) for sequence in self.quantification_input.saphiresolveinput.get('sequencelist', []) if sequence is not None],
+                # Check if sequencelist exists before including it
+                **({'sequencelist': [self._dump_sequence(sequence) for sequence in self.quantification_input.saphiresolveinput['sequencelist']]} if 'sequencelist' in self.quantification_input.saphiresolveinput else {}),
                 'eventlist': [self._dump_event(event) for event in self.quantification_input.saphiresolveinput.get('eventlist', []) if event is not None]
             }
         }

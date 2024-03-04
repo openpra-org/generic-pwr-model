@@ -142,9 +142,12 @@ class JSONParser:
             gatelist=[Gate(**gate_data) for gate_data in fault['gatelist']]
         ) for fault in faulttreelist_data]
 
-        # Parse the 'sequencelist' section
-        sequencelist_data = saphsolve_input['saphiresolveinput']['sequencelist']
-        sequencelist = [Sequence(**sequence_data) for sequence_data in sequencelist_data]
+        # Parse the 'sequencelist' section if it exists
+        if 'sequencelist' in saphsolve_input['saphiresolveinput']:
+            sequencelist_data = saphsolve_input['saphiresolveinput']['sequencelist']
+            sequencelist = [Sequence(**sequence_data) for sequence_data in sequencelist_data]
+        else:
+            sequencelist = []
 
         # Parse the 'eventlist' section
         eventlist_data = saphsolve_input['saphiresolveinput']['eventlist']
