@@ -158,22 +158,6 @@
                 <basic-event name="SEN3"/>
             </atleast>
         </define-gate>
-        <define-basic-event name="CPU">
-            <label>Computer fails to correctly process sensor signals</label>
-            <float value="0.05"/>
-        </define-basic-event>
-        <define-basic-event name="SEN1">
-            <label>Sensor 1</label>
-            <float value="0.05"/>
-        </define-basic-event>
-        <define-basic-event name="SEN2">
-            <label>Sensor 2</label>
-            <float value="0.05"/>
-        </define-basic-event>
-        <define-basic-event name="SEN3">
-            <label>Sensor 3</label>
-            <float value="0.05"/>
-        </define-basic-event>
     </define-fault-tree>
     <define-fault-tree name="Isolation-valve-A">
         <label>Isolation valve A fails to close on demand</label>
@@ -258,6 +242,22 @@
         <define-basic-event name="RC1">
             <label>Computer fails to drop out relay contacts</label>
             <parameter name="default_unavailability"/>
+        </define-basic-event>
+        <define-basic-event name="CPU">
+            <label>Computer fails to correctly process sensor signals</label>
+            <float value="0.05"/>
+        </define-basic-event>
+        <define-basic-event name="SEN1">
+            <label>Sensor 1</label>
+            <float value="0.05"/>
+        </define-basic-event>
+        <define-basic-event name="SEN2">
+            <label>Sensor 2</label>
+            <float value="0.05"/>
+        </define-basic-event>
+        <define-basic-event name="SEN3">
+            <label>Sensor 3</label>
+            <float value="0.05"/>
         </define-basic-event>
     </model-data>
 </opsa-mef>
