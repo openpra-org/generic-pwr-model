@@ -17,15 +17,16 @@ class JSONtoXMLConverter:
         eventlist = self.parsed_json_object.saphiresolveinput.get('eventlist', [])
 
         for event in eventlist:
-            name = event.id
-            label = event.name
-            value = event.value
+            if event.corrgate == "0":
+                name = event.id
+                label = event.name
+                value = event.value
 
             # Skip certain labels
-            if label in ['<TRUE>', '<FALSE>', '<PASS>']:
-                continue
+                if label in ['<TRUE>', '<FALSE>', '<PASS>']:
+                    continue
 
-            # Add basic event to model data
-            model_data.add_basic_event(name, label=label, float_value=value)
+                # Add basic event to model data
+                model_data.add_basic_event(name, label=label, float_value=value)
 
         return model_data
