@@ -105,20 +105,26 @@ class FaultTree:
 
 class ModelData:
     def __init__(self):
-        self.parameters = []
         self.basic_events = []
+
+    def add_basic_event(self, name, label=None, float_value=None):
+        self.basic_events.append({'name': name, 'label': label, 'float_value': float_value})
 
     def to_xml(self):
         model_data_element = ET.Element('model-data')
 
-        for parameter in self.parameters:
-            parameter_element = ET.SubElement(model_data_element, 'define-parameter', {'name': parameter['name']})
-            float_element = ET.SubElement(parameter_element, 'float', {'value': parameter['value']})
+        for basic_event_data in self.basic_events:
+            basic_event_element = ET.SubElement(model_data_element, 'define-basic-event', {'name': basic_event_data['name']})
 
-        for basic_event in self.basic_events:
-            basic_event_element = ET.SubElement(model_data_element, 'define-basic-event', {'name': basic_event['name']})
-            label_element = ET.SubElement(basic_event_element, 'label')
-            label_element.text = basic_event['label']
-            float_element = ET.SubElement(basic_event_element, 'float', {'value': basic_event['value']})
+            if basic_event_data.get('label'):
+                label_element = ET.SubElement(basic_event_element, 'label')
+                label_element.text = basic_event_data['label']
+
+            if basic_event_data.get('float_value'):
+                # Format the float value to ensure proper display
+                float_value = "{:.6E}".format(basic_event_data['float_value'])
+                float_element = ET.SubElement(basic_event_element, 'float', {'value': float_value})
 
         return model_data_element
+
+
