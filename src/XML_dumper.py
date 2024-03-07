@@ -6,13 +6,20 @@ class XMLDumper:
     def __init__(self):
         pass
 
-    def dump_object_to_xml(self, parsed_object, file_path):
+    def dump_object_to_xml(self, parsed_objects, file_path):
         try:
-            # Create ElementTree object
-            tree = ET.ElementTree(parsed_object)
+            # Create a root element for the XML tree
+            root = ET.Element('root')
+
+            # Append each parsed object (XML element) to the root
+            for parsed_object in parsed_objects:
+                root.append(parsed_object)
+
+            # Create ElementTree object with the root element
+            tree = ET.ElementTree(root)
 
             # Convert ElementTree to string
-            xml_string = ET.tostring(parsed_object, encoding="utf-8", xml_declaration=True)
+            xml_string = ET.tostring(root, encoding="utf-8", xml_declaration=True)
 
             # Parse XML string to minidom Document
             dom = xml.dom.minidom.parseString(xml_string)
@@ -28,3 +35,4 @@ class XMLDumper:
                 xml_file.write(unescaped_xml)
         except Exception as e:
             print(f"Error dumping XML object to file {file_path}: {e}")
+
