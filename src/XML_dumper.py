@@ -9,7 +9,7 @@ class XMLDumper:
     def dump_object_to_xml(self, parsed_objects, file_path):
         try:
             # Create a root element for the XML tree
-            root = ET.Element('root')
+            root = ET.Element('opsa-mef')
 
             # Append each parsed object (XML element) to the root
             for parsed_object in parsed_objects:

@@ -9,34 +9,43 @@ class JSONtoXMLConverter:
         self.parsed_json_object = parsed_json_object
 
     def convert_to_xml(self):
-        # model_data = self._convert_eventlist_to_modeldata()
-
+        model_data = self._convert_eventlist_to_modeldata()
         fault_trees = self._convert_faulttreelist_to_faulttree()
 
         # Convert each FaultTree object to XML
         xml_fault_trees = [ft.to_xml() for ft in fault_trees]
+        xml_model_data = model_data.to_xml()
 
-        # return model_data.to_xml()
-        return xml_fault_trees
+        # Create a root XML element to hold both fault trees and model data
+        root_element = ET.Element('')
 
-    # def _convert_eventlist_to_modeldata(self):
-    #     model_data = ModelData()
-    #
-    #     # Accessing eventlist attribute directly from parsed JSON object
-    #     eventlist = self.parsed_json_object.saphiresolveinput.get('eventlist', [])
-    #
-    #     for event in eventlist:
-    #             if event.corrgate == "0":
-    #                 name = event.id
-    #                 label = event.name
-    #                 value = event.value
-    #
-    #                 if label in ["<TRUE>", "<FALSE>", "<PASS>"]:
-    #                     continue
-    #
-    #                 model_data.add_basic_event(name, label=label, float_value=value)
-    #
-    #     return model_data
+        # Append XML representation of fault trees to the root element
+        for xml_fault_tree in xml_fault_trees:
+            root_element.append(xml_fault_tree)
+
+        # Append XML representation of model data to the root element
+        root_element.append(xml_model_data)
+
+        return root_element
+
+    def _convert_eventlist_to_modeldata(self):
+        model_data = ModelData()
+
+        # Accessing eventlist attribute directly from parsed JSON object
+        eventlist = self.parsed_json_object.saphiresolveinput.get('eventlist', [])
+
+        for event in eventlist:
+                if event.corrgate == "0":
+                    name = event.id
+                    label = event.name
+                    value = event.value
+
+                    if label in ["<TRUE>", "<FALSE>", "<PASS>"]:
+                        continue
+
+                    model_data.add_basic_event(name, label=label, float_value=value)
+
+        return model_data
 
     def _convert_faulttreelist_to_faulttree(self):
         faulttreelist = self.parsed_json_object.saphiresolveinput.get("faulttreelist", [])
@@ -70,7 +79,14 @@ class JSONtoXMLConverter:
                 elif "/" in gate_type:  # Custom gate type like "2/3"
                     min_required = gate_type.split("/")[0]
                     ft.add_gate(gate_id, min_required, gate_inputs)  # Use min_required as gate_type
-                elif gate_type == "basic-event":
+                if event_inputs is not None:
+                    # Check if gate_inputs is an integer (indicating it's empty)
+                    if isinstance(event_inputs, int):
+                        event_inputs = []  # Convert it to an empty list
+                    else:
+                        # Convert gate_inputs to a list if it's not already one
+                        if not isinstance(event_inputs, list):
+                            event_inputs = [event_inputs]
                     # Iterate through event_inputs and add each input individually
                     for input_name in event_inputs:
                         if input_name is not None:
