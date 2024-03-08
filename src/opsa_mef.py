@@ -48,9 +48,9 @@ class EventTree:
         for sequence in self.sequences:
             sequence_element = ET.SubElement(event_tree_element, 'define-sequence', {'name': sequence})
 
-        if self.initial_state:
-            initial_state_element = ET.SubElement(event_tree_element, 'initial-state')
-            self._build_initial_state_xml(self.initial_state, initial_state_element)
+        # if self.initial_state:
+        #     initial_state_element = ET.SubElement(event_tree_element, 'initial-state')
+        #     self._build_initial_state_xml(self.initial_state, initial_state_element)
 
         return event_tree_element
 

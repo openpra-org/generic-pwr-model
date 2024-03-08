@@ -1,4 +1,4 @@
-from opsa_mef import ModelData, FaultTreeOpenPSA
+from opsa_mef import ModelData, FaultTreeOpenPSA, EventTree
 import xml.etree.ElementTree as ET
 
 from JSInp_parser import FaultTree
@@ -9,15 +9,20 @@ class JSONtoXMLConverter:
         self.parsed_json_object = parsed_json_object
 
     def convert_to_xml(self):
-        model_data = self._convert_eventlist_to_modeldata()
+        event_trees = self._convert_sequencelist_to_eventteee()
         fault_trees = self._convert_faulttreelist_to_faulttree()
+        model_data = self._convert_eventlist_to_modeldata()
 
         # Convert each FaultTree object to XML
+        xml_event_trees = event_trees.to_xml()
         xml_fault_trees = [ft.to_xml() for ft in fault_trees]
         xml_model_data = model_data.to_xml()
 
         # Create a root XML element to hold both fault trees and model data
         root_element = ET.Element('')
+
+        # Append XML representation of event trees to the root element
+        root_element.append(xml_event_trees)
 
         # Append XML representation of fault trees to the root element
         for xml_fault_tree in xml_fault_trees:
@@ -96,6 +101,27 @@ class JSONtoXMLConverter:
             combined_fault_trees.append(ft)
 
         return combined_fault_trees
+
+    def _convert_sequencelist_to_eventteee(self):
+        # Accessing sysgatelist attribute directly from parsed JSON object
+        sysgatelist = self.parsed_json_object.saphiresolveinput.get('sysgatelist', [])
+        # Accessing sequencelist attribute directly from parsed JSON object
+        sequencelist = self.parsed_json_object.saphiresolveinput.get('sequencelist', [])
+
+        event_tree_name = self.parsed_json_object.saphiresolveinput.get('header', {}).eventtree.name
+        event_tree = EventTree(event_tree_name)
+        # event_trees = []  # List to hold EventTree objects
+
+        # Iterate over both lists simultaneously
+        for seqname in sysgatelist:
+            id = str(seqname.id)
+            event_tree.functional_events.append(id)
+
+        for sequence in sequencelist:
+            seqid = str(sequence.seqid)
+            event_tree.sequences.append(seqid)
+
+        return event_tree
 
 
 
