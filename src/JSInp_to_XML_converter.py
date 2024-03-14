@@ -109,19 +109,87 @@ class JSONtoXMLConverter:
         sequencelist = self.parsed_json_object.saphiresolveinput.get('sequencelist', [])
 
         event_tree_name = self.parsed_json_object.saphiresolveinput.get('header', {}).eventtree.name
+        initiating_event_id = self.parsed_json_object.saphiresolveinput.get('header',{}).eventtree.initevent
         event_tree = EventTree(event_tree_name)
         # event_trees = []  # List to hold EventTree objects
+
+        initial_state_data = {
+            "name": "fork",
+            "attributes": {"functional-event": []},  # Initialize as an empty list
+            "children": []
+        }
+        # Initialize an empty list to hold the children states
+        children_states = []
+
 
         # Iterate over both lists simultaneously
         for seqname in sysgatelist:
             id = str(seqname.id)
             event_tree.functional_events.append(id)
 
+        event_tree.initial_state = initial_state_data
+
+        logiclist =[]
         for sequence in sequencelist:
             seqid = str(sequence.seqid)
             event_tree.sequences.append(seqid)
 
+            logic_list = sequence.logiclist
+            logiclist.append(logic_list)
+
+        """Compare elements within sub-lists and call appropriate function."""
+        max_length = max(len(sublist) for sublist in logiclist)  # Find the maximum length
+        for i in range(max_length):
+            elements = [sublist[i] if i < len(sublist) else None for sublist in logiclist]
+
+            # Convert each element to binary and consider only the first 17 digits
+            binary_elements_funtionalevent_id = [self.decimal_to_binary_beid(element) if element is not None else None for element in
+                                    elements]
+            # print(binary_elements_beid)
+            binary_elements = [self.decimal_to_binary(element) if element is not None else None for element in elements]
+
+            # Check if all elements at this position are equal
+            if any(binary_elements_funtionalevent_id[0] == element for element in binary_elements_funtionalevent_id):
+                # Here you handle the case where elements differ
+                initial_state_data["attributes"]["functional-event"].append(str(binary_elements_funtionalevent_id[0]))
+                for elem in binary_elements_funtionalevent_id:
+                    if elem != binary_elements_funtionalevent_id[0]:
+                        pass
+                        # Correctly navigate to "functional-event" and append
+                        # initial_state_data["attributes"]["functional-event"].append(str(elem))
+                self.function_for_different_elements(i)
+
+            else:
+                # Call function for different elements
+                self.function_for_different_elements(i)
+
+
+
         return event_tree
+
+
+
+    def decimal_to_binary(self, dec):
+        """Convert decimal to binary"""
+        binary = bin(dec)[2:]  # Convert decimal to binary, excluding the '0b' prefix
+        return binary
+
+    def decimal_to_binary_beid(self, dec):
+        """Convert decimal to binary, extract the last 17 digits, and return their decimal representation."""
+        binary = bin(dec)[2:]  # Convert decimal to binary, excluding the '0b' prefix
+        last_17_binary = binary[-17:]  # Extract the last 17 digits
+
+        # Convert the last 17 binary digits back to a decimal number
+        decimal_representation = int(last_17_binary, 2) if len(last_17_binary) > 0 else 0
+        return decimal_representation
+
+    def function_for_equal_elements(self,position):
+        print(f"At least 1 element at position {position} are equal")
+
+    def function_for_different_elements(self, position):
+        print(f"Elements at position {position} are different")
+
+
 
 
 

@@ -48,37 +48,18 @@ class EventTree:
         for sequence in self.sequences:
             sequence_element = ET.SubElement(event_tree_element, 'define-sequence', {'name': sequence})
 
-        # if self.initial_state:
-        #     initial_state_element = ET.SubElement(event_tree_element, 'initial-state')
-        #     self._build_initial_state_xml(self.initial_state, initial_state_element)
+        if self.initial_state:
+            initial_state_element = ET.SubElement(event_tree_element, 'initial-state')
+            self._build_initial_state_xml(self.initial_state, initial_state_element)
 
         return event_tree_element
 
     def _build_initial_state_xml(self, state, parent_element):
-        fork_element = ET.SubElement(parent_element, 'fork', {'functional-event': state['functional_event']})
-        for path in state['paths']:
-            path_element = ET.SubElement(fork_element, 'path', {'state': path['state']})
-            collect_formula_element = ET.SubElement(path_element, 'collect-formula')
-            self._build_formula_xml(path['formula'], collect_formula_element)
-
-        for child_state in state.get('children', []):
-            self._build_initial_state_xml(child_state, parent_element)
-
-    def _build_formula_xml(self, formula, parent_element):
-        if isinstance(formula, dict):
-            if '.root' in formula['name']:
-                gate_name, reference = formula['name'].split('.')
-                gate_element = ET.SubElement(parent_element, 'gate', {'name': gate_name})
-                reference_element = ET.SubElement(gate_element, reference)
-            else:
-                gate_element = ET.SubElement(parent_element, 'gate', {'name': formula['name']})
-                self._build_formula_xml(formula['child'], gate_element)
-        elif isinstance(formula, str):
-            basic_event_element = ET.SubElement(parent_element, 'basic-event', {'name': formula})
-        elif isinstance(formula, list):
-            for sub_formula in formula:
-                self._build_formula_xml(sub_formula, parent_element)
-
+        fork_element = ET.SubElement(parent_element, state['name'], state.get('attributes', {}))
+        for child in state.get('children', []):
+            child_element = ET.SubElement(fork_element, child['name'], child.get('attributes', {}))
+            if child.get('children'):
+                self._build_initial_state_xml(child, child_element)
 
 
 class FaultTreeOpenPSA:
