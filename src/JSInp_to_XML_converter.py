@@ -1,8 +1,6 @@
 from opsa_mef import ModelData, FaultTreeOpenPSA, EventTree
 import xml.etree.ElementTree as ET
 
-from JSInp_parser import FaultTree
-
 
 class JSONtoXMLConverter:
     def __init__(self, parsed_json_object):
@@ -111,15 +109,8 @@ class JSONtoXMLConverter:
         event_tree_name = self.parsed_json_object.saphiresolveinput.get('header', {}).eventtree.name
         initiating_event_id = self.parsed_json_object.saphiresolveinput.get('header',{}).eventtree.initevent
         event_tree = EventTree(event_tree_name)
-        # event_trees = []  # List to hold EventTree objects
 
-        initial_state_data = {
-            "name": "fork",
-            "attributes": {"functional-event": []},  # Initialize as an empty list
-            "children": []
-        }
-        # Initialize an empty list to hold the children states
-        children_states = []
+
 
 
         # Iterate over both lists simultaneously
@@ -127,15 +118,91 @@ class JSONtoXMLConverter:
             id = str(seqname.id)
             event_tree.functional_events.append(id)
 
-        event_tree.initial_state = initial_state_data
+
 
         logiclist =[]
         for sequence in sequencelist:
-            seqid = str(sequence.seqid)
+            seqid = "S"+str(sequence.seqid)
             event_tree.sequences.append(seqid)
 
             logic_list = sequence.logiclist
             logiclist.append(logic_list)
+
+        # Initialize initial state data
+        initial_state_data = {
+            "name": "fork",
+            "attributes": {"functional-event": ""},
+            "children": []
+        }
+        path_success_data = {
+            "name": "path",
+            "attributes": {"state": "Success"},
+            "children": [
+                {
+                    "name": "collect-formula",
+                    "children": [
+                        {
+                            "name": "not",
+                            "children": [{
+                                "name": "gate",
+                                "attributes": {"name": ""}
+                            }]}
+                    ]
+                }
+            ]
+        }
+
+        path_failure_data = {
+            "name": "path",
+            "attributes": {"state": "Failure"},
+            "children": [
+                {
+                    "name": "collect-formula",
+                    "children": [
+                        {
+                            "name": "gate",
+                            "attributes": {"name": ""}
+                        }
+                    ]
+                }
+            ]
+        }
+
+        # Conditionally add the "sequence" element
+        include_sequence_element_success = False  # Change this condition as needed
+        include_sequence_element_failure = False  # Change this condition as needed
+
+        collect_formula_children_sequence_success = path_success_data["children"]
+        collect_formula_children_sequence_failure = path_failure_data["children"]
+
+        if include_sequence_element_success:
+            sequence_element = {
+                "name": "sequence",
+                "attributes": {"name": ""}
+            }
+            collect_formula_children_sequence_success.append(sequence_element)
+
+        if include_sequence_element_failure:
+            sequence_element = {
+                "name": "sequence",
+                "attributes": {"name": ""}
+            }
+            collect_formula_children_sequence_failure.append(sequence_element)
+
+        # Conditionally add path_success_data or path_failure_data to initial_state_data
+        include_success_data = True  # Change this condition as needed
+        include_failure_data = True  # Change this condition as needed
+
+        if include_success_data:
+            initial_state_data["children"].append(path_success_data)
+
+        if include_failure_data:
+            initial_state_data["children"].append(path_failure_data)
+
+
+        print(initial_state_data)
+        # initial_state_data["children"].append(path_success_data)
+        # initial_state_data["children"].append(path_failure_data)
 
         """Compare elements within sub-lists and call appropriate function."""
         max_length = max(len(sublist) for sublist in logiclist)  # Find the maximum length
@@ -143,27 +210,20 @@ class JSONtoXMLConverter:
             elements = [sublist[i] if i < len(sublist) else None for sublist in logiclist]
 
             # Convert each element to binary and consider only the first 17 digits
-            binary_elements_funtionalevent_id = [self.decimal_to_binary_beid(element) if element is not None else None for element in
-                                    elements]
-            # print(binary_elements_beid)
+            binary_elements_funtionalevent_id = [self.decimal_to_binary_beid(element) if element is not None else None for element in elements]
+
             binary_elements = [self.decimal_to_binary(element) if element is not None else None for element in elements]
+
 
             # Check if all elements at this position are equal
             if any(binary_elements_funtionalevent_id[0] == element for element in binary_elements_funtionalevent_id):
-                # Here you handle the case where elements differ
-                initial_state_data["attributes"]["functional-event"].append(str(binary_elements_funtionalevent_id[0]))
-                for elem in binary_elements_funtionalevent_id:
-                    if elem != binary_elements_funtionalevent_id[0]:
-                        pass
-                        # Correctly navigate to "functional-event" and append
-                        # initial_state_data["attributes"]["functional-event"].append(str(elem))
                 self.function_for_different_elements(i)
 
             else:
                 # Call function for different elements
                 self.function_for_different_elements(i)
 
-
+        event_tree.initial_state = initial_state_data
 
         return event_tree
 

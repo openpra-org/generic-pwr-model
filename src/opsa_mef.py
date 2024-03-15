@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+from collections import deque
 
 
 class OPSAMEF:
@@ -55,11 +56,19 @@ class EventTree:
         return event_tree_element
 
     def _build_initial_state_xml(self, state, parent_element):
-        fork_element = ET.SubElement(parent_element, state['name'], state.get('attributes', {}))
-        for child in state.get('children', []):
-            child_element = ET.SubElement(fork_element, child['name'], child.get('attributes', {}))
-            if child.get('children'):
-                self._build_initial_state_xml(child, child_element)
+        queue = deque([(state, parent_element)])  # Initialize a queue with the root element
+        processed_elements = set()  # Track processed elements to avoid duplication
+
+        while queue:
+            current_state, current_parent = queue.popleft()  # Dequeue the current element
+            # if id(current_state) in processed_elements:
+                # continue  # Skip processing if the element has already been processed
+            processed_elements.add(id(current_state))
+
+            current_element = ET.SubElement(current_parent, current_state['name'], current_state.get('attributes', {}))
+
+            for child in current_state.get('children', []):
+                queue.append((child, current_element))  # Enqueue child elements for processing
 
 
 class FaultTreeOpenPSA:
