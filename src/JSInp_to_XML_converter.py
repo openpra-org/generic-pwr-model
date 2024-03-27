@@ -1,5 +1,7 @@
 from opsa_mef import ModelData, FaultTreeOpenPSA, EventTree
 import xml.etree.ElementTree as ET
+import json
+import copy
 
 
 class JSONtoXMLConverter:
@@ -7,7 +9,8 @@ class JSONtoXMLConverter:
         self.parsed_json_object = parsed_json_object
 
     def convert_to_xml(self):
-        event_trees = self._convert_sequencelist_to_eventteee()
+        initiating_event = self._convert_initiatingevent_to_xml()
+        event_trees = self._convert_sequencelist_to_eventteee
         fault_trees = self._convert_faulttreelist_to_faulttree()
         model_data = self._convert_eventlist_to_modeldata()
 
@@ -19,6 +22,7 @@ class JSONtoXMLConverter:
         # Create a root XML element to hold both fault trees and model data
         root_element = ET.Element('')
 
+        root_element.append(initiating_event)
         # Append XML representation of event trees to the root element
         root_element.append(xml_event_trees)
 
@@ -31,6 +35,14 @@ class JSONtoXMLConverter:
 
         return root_element
 
+    def _convert_initiatingevent_to_xml(self):
+        event_tree_name = self.parsed_json_object.saphiresolveinput.get('header', {}).eventtree.name
+        initiating_event_id = str(self.parsed_json_object.saphiresolveinput.get('header', {}).eventtree.initevent)
+
+        initiating_event_element = ET.Element('define-initiating-event',
+                                               {'name': initiating_event_id, 'event-tree': event_tree_name})
+
+        return initiating_event_element
     def _convert_eventlist_to_modeldata(self):
         model_data = ModelData()
 
@@ -100,6 +112,7 @@ class JSONtoXMLConverter:
 
         return combined_fault_trees
 
+    @property
     def _convert_sequencelist_to_eventteee(self):
         # Accessing sysgatelist attribute directly from parsed JSON object
         sysgatelist = self.parsed_json_object.saphiresolveinput.get('sysgatelist', [])
@@ -107,18 +120,12 @@ class JSONtoXMLConverter:
         sequencelist = self.parsed_json_object.saphiresolveinput.get('sequencelist', [])
 
         event_tree_name = self.parsed_json_object.saphiresolveinput.get('header', {}).eventtree.name
-        initiating_event_id = self.parsed_json_object.saphiresolveinput.get('header',{}).eventtree.initevent
         event_tree = EventTree(event_tree_name)
 
-
-
-
         # Iterate over both lists simultaneously
-        for seqname in sysgatelist:
-            id = str(seqname.id)
-            event_tree.functional_events.append(id)
-
-
+        for functional_event in sysgatelist:
+            functional_event_name = str(functional_event.id)
+            event_tree.functional_events.append(functional_event_name)
 
         logiclist =[]
         for sequence in sequencelist:
@@ -128,106 +135,74 @@ class JSONtoXMLConverter:
             logic_list = sequence.logiclist
             logiclist.append(logic_list)
 
-        # Initialize initial state data
         initial_state_data = {
             "name": "fork",
             "attributes": {"functional-event": ""},
-            "children": []
-        }
-        path_success_data = {
-            "name": "path",
-            "attributes": {"state": "Success"},
             "children": [
                 {
-                    "name": "collect-formula",
+                    "name": "path",
+                    "attributes": {"state": "Success"},
                     "children": [
                         {
-                            "name": "not",
-                            "children": [{
-                                "name": "gate",
-                                "attributes": {"name": ""}
-                            }]}
+                            "name": "collect-formula",
+                            "children": [
+                                {
+                                    "name": "not",
+                                    "children": [{
+                                        "name": "gate",
+                                        "attributes": {"name": ""}
+                                    }]
+                                }
+                            ]
+                        }
                     ]
-                }
-            ]
-        }
-
-        path_failure_data = {
-            "name": "path",
-            "attributes": {"state": "Failure"},
-            "children": [
+                },
                 {
-                    "name": "collect-formula",
+                    "name": "path",
+                    "attributes": {"state": "Failure"},
                     "children": [
                         {
-                            "name": "gate",
-                            "attributes": {"name": ""}
+                            "name": "collect-formula",
+                            "children": [
+                                {
+                                    "name": "gate",
+                                    "attributes": {"name": ""}
+                                }
+                            ]
                         }
                     ]
                 }
             ]
         }
 
-        # Conditionally add the "sequence" element
-        include_sequence_element_success = False  # Change this condition as needed
-        include_sequence_element_failure = False  # Change this condition as needed
+        sequence_element = {
+            "name": "sequence",
+            "attributes": {"name": ""}
+        }
 
-        collect_formula_children_sequence_success = path_success_data["children"]
-        collect_formula_children_sequence_failure = path_failure_data["children"]
+        """fork#1 with 2 end sequences"""
+        final_state_data = self.deep_copy_dict(initial_state_data)
+        """end fork#1"""
 
-        if include_sequence_element_success:
-            sequence_element = {
-                "name": "sequence",
-                "attributes": {"name": ""}
-            }
-            collect_formula_children_sequence_success.append(sequence_element)
+        """fork#2 with 4 end sequences"""
+        final_state_data["children"][-2]["children"].append(self.deep_copy_dict(initial_state_data))
+        final_state_data["children"][-1]["children"].append(self.deep_copy_dict(initial_state_data))
+        """end fork#2"""
 
-        if include_sequence_element_failure:
-            sequence_element = {
-                "name": "sequence",
-                "attributes": {"name": ""}
-            }
-            collect_formula_children_sequence_failure.append(sequence_element)
+        """fork#3 with 8 end sequences"""
+        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"].append(
+            self.deep_copy_dict(initial_state_data))
+        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"].append(
+            self.deep_copy_dict(initial_state_data))
+        final_state_data["children"][-1]["children"][-1]["children"][-2]["children"].append(
+            self.deep_copy_dict(initial_state_data))
+        final_state_data["children"][-1]["children"][-1]["children"][-1]["children"].append(
+            self.deep_copy_dict(initial_state_data))
+        """end fork#3"""
 
-        # Conditionally add path_success_data or path_failure_data to initial_state_data
-        include_success_data = True  # Change this condition as needed
-        include_failure_data = True  # Change this condition as needed
-
-        if include_success_data:
-            initial_state_data["children"].append(path_success_data)
-
-        if include_failure_data:
-            initial_state_data["children"].append(path_failure_data)
-
-
-        print(initial_state_data)
-        # initial_state_data["children"].append(path_success_data)
-        # initial_state_data["children"].append(path_failure_data)
-
-        """Compare elements within sub-lists and call appropriate function."""
-        max_length = max(len(sublist) for sublist in logiclist)  # Find the maximum length
-        for i in range(max_length):
-            elements = [sublist[i] if i < len(sublist) else None for sublist in logiclist]
-
-            # Convert each element to binary and consider only the first 17 digits
-            binary_elements_funtionalevent_id = [self.decimal_to_binary_beid(element) if element is not None else None for element in elements]
-
-            binary_elements = [self.decimal_to_binary(element) if element is not None else None for element in elements]
-
-
-            # Check if all elements at this position are equal
-            if any(binary_elements_funtionalevent_id[0] == element for element in binary_elements_funtionalevent_id):
-                self.function_for_different_elements(i)
-
-            else:
-                # Call function for different elements
-                self.function_for_different_elements(i)
-
-        event_tree.initial_state = initial_state_data
+        event_tree.initial_state = final_state_data
 
         return event_tree
-
-
 
     def decimal_to_binary(self, dec):
         """Convert decimal to binary"""
@@ -243,11 +218,12 @@ class JSONtoXMLConverter:
         decimal_representation = int(last_17_binary, 2) if len(last_17_binary) > 0 else 0
         return decimal_representation
 
-    def function_for_equal_elements(self,position):
-        print(f"At least 1 element at position {position} are equal")
-
-    def function_for_different_elements(self, position):
-        print(f"Elements at position {position} are different")
+    def deep_copy_dict(self, dictionary):
+        """
+        Deep copy a dictionary and all nested dictionaries.
+        """
+        return {key: (self.deep_copy_dict(value) if isinstance(value, dict) else copy.deepcopy(value)) for key, value in
+                dictionary.items()}
 
 
 
