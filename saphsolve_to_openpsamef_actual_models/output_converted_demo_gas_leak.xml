@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report>
+  <information>
+    <software name="SCRAM" version="0.16.2" contacts="https://scram-pra.org"/>
+    <time>2024-03-27T22:17:09</time>
+    <performance>
+      <calculation-time initiating-event="INIT5" name="S9">
+        <products>0.269789</products>
+        <probability>0.008154</probability>
+      </calculation-time>
+      <calculation-time initiating-event="INIT5" name="S8">
+        <products>0.377839</products>
+        <probability>0.010847</probability>
+      </calculation-time>
+      <calculation-time initiating-event="INIT5" name="S7">
+        <products>0.345374</products>
+        <probability>0.007101</probability>
+      </calculation-time>
+      <calculation-time initiating-event="INIT5" name="S6">
+        <products>0.327792</products>
+        <probability>0.006799</probability>
+      </calculation-time>
+      <calculation-time initiating-event="INIT5" name="S5">
+        <products>0.336907</products>
+        <probability>0.005504</probability>
+      </calculation-time>
+      <calculation-time initiating-event="INIT5" name="S4">
+        <products>0.343165</products>
+        <probability>0.00601</probability>
+      </calculation-time>
+      <calculation-time initiating-event="INIT5" name="S3">
+        <products>0.334281</products>
+        <probability>0.00576</probability>
+      </calculation-time>
+      <calculation-time initiating-event="INIT5" name="S2">
+        <products>0.306989</products>
+        <probability>0.005476</probability>
+      </calculation-time>
+      <calculation-time initiating-event="INIT5" name="S1">
+        <products>0.342758</products>
+        <probability>0.005409</probability>
+      </calculation-time>
+      <calculation-time name="FT1.G1">
+        <products>0.172839</products>
+        <probability>0.00547</probability>
+      </calculation-time>
+      <calculation-time name="FT4.G7">
+        <products>0.117948</products>
+        <probability>0.00627</probability>
+      </calculation-time>
+      <calculation-time name="FT2.G3">
+        <products>0.111358</products>
+        <probability>0.004883</probability>
+      </calculation-time>
+      <calculation-time name="FT3.G5">
+        <products>0.108621</products>
+        <probability>0.005215</probability>
+      </calculation-time>
+    </performance>
+    <calculated-quantity name="Minimal Cut Sets">
+      <calculation-method name="MOCUS">
+        <limits>
+          <product-order>20</product-order>
+        </limits>
+      </calculation-method>
+    </calculated-quantity>
+    <calculated-quantity name="Probability Analysis" definition="Quantitative analysis of failure probability or unavailability" approximation="mcub">
+      <calculation-method name="MCUB Approximation">
+        <limits>
+          <mission-time>8760</mission-time>
+        </limits>
+      </calculation-method>
+    </calculated-quantity>
+    <model-features>
+      <gates>8</gates>
+      <basic-events>17</basic-events>
+      <fault-trees>4</fault-trees>
+      <event-trees>1</event-trees>
+      <functional-events>4</functional-events>
+      <sequences>9</sequences>
+      <initiating-events>1</initiating-events>
+    </model-features>
+    <warning>Unused basic events: BE5</warning>
+  </information>
+  <results>
+    <initiating-event name="INIT5" sequences="9">
+      <sequence name="S9" value="0.0571072"/>
+      <sequence name="S8" value="0.00107637"/>
+      <sequence name="S7" value="0.0104637"/>
+      <sequence name="S6" value="0.0104637"/>
+      <sequence name="S5" value="0.0997562"/>
+      <sequence name="S4" value="0.0104637"/>
+      <sequence name="S3" value="0.0997562"/>
+      <sequence name="S2" value="0.0997562"/>
+      <sequence name="S1" value="1"/>
+    </initiating-event>
+    <sum-of-products initiating-event="INIT5" name="S9" basic-events="4" products="4" probability="0.0571072" distribution="1 3">
+      <product order="2" probability="0.0025" contribution="0.0434783">
+        <basic-event name="BE11"/>
+        <basic-event name="BE12"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.0434783">
+        <basic-event name="BE11"/>
+        <basic-event name="BE13"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.0434783">
+        <basic-event name="BE12"/>
+        <basic-event name="BE13"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.869565">
+        <basic-event name="BE10"/>
+      </product>
+    </sum-of-products>
+    <sum-of-products initiating-event="INIT5" name="S8" basic-events="12" products="27" probability="0.00107637" distribution="0 0 8 12 6 1">
+      <product order="6" probability="1.5625e-08" contribution="1.45094e-05">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="5" probability="3.125e-07" contribution="0.000290187">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="5" probability="3.125e-07" contribution="0.000290187">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+        <basic-event name="BE15"/>
+      </product>
+      <product order="5" probability="3.125e-07" contribution="0.000290187">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE20"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="4" probability="6.25e-06" contribution="0.00580375">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE20"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="4" probability="6.25e-06" contribution="0.00580375">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE20"/>
+        <basic-event name="BE15"/>
+      </product>
+      <product order="5" probability="3.125e-07" contribution="0.000290187">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE21"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="4" probability="6.25e-06" contribution="0.00580375">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE21"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="4" probability="6.25e-06" contribution="0.00580375">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE21"/>
+        <basic-event name="BE15"/>
+      </product>
+      <product order="5" probability="3.125e-07" contribution="0.000290187">
+        <basic-event name="BE22"/>
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="4" probability="6.25e-06" contribution="0.00580375">
+        <basic-event name="BE22"/>
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="4" probability="6.25e-06" contribution="0.00580375">
+        <basic-event name="BE22"/>
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+        <basic-event name="BE15"/>
+      </product>
+      <product order="4" probability="6.25e-06" contribution="0.00580375">
+        <basic-event name="BE22"/>
+        <basic-event name="BE20"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.116075">
+        <basic-event name="BE22"/>
+        <basic-event name="BE20"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.116075">
+        <basic-event name="BE22"/>
+        <basic-event name="BE20"/>
+        <basic-event name="BE15"/>
+      </product>
+      <product order="4" probability="6.25e-06" contribution="0.00580375">
+        <basic-event name="BE22"/>
+        <basic-event name="BE21"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.116075">
+        <basic-event name="BE22"/>
+        <basic-event name="BE21"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.116075">
+        <basic-event name="BE22"/>
+        <basic-event name="BE21"/>
+        <basic-event name="BE15"/>
+      </product>
+      <product order="5" probability="3.125e-07" contribution="0.000290187">
+        <basic-event name="BE23"/>
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="4" probability="6.25e-06" contribution="0.00580375">
+        <basic-event name="BE23"/>
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="4" probability="6.25e-06" contribution="0.00580375">
+        <basic-event name="BE23"/>
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+        <basic-event name="BE15"/>
+      </product>
+      <product order="4" probability="6.25e-06" contribution="0.00580375">
+        <basic-event name="BE23"/>
+        <basic-event name="BE20"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.116075">
+        <basic-event name="BE23"/>
+        <basic-event name="BE20"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.116075">
+        <basic-event name="BE23"/>
+        <basic-event name="BE20"/>
+        <basic-event name="BE15"/>
+      </product>
+      <product order="4" probability="6.25e-06" contribution="0.00580375">
+        <basic-event name="BE23"/>
+        <basic-event name="BE21"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.116075">
+        <basic-event name="BE23"/>
+        <basic-event name="BE21"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.116075">
+        <basic-event name="BE23"/>
+        <basic-event name="BE21"/>
+        <basic-event name="BE15"/>
+      </product>
+    </sum-of-products>
+    <sum-of-products initiating-event="INIT5" name="S7" basic-events="8" products="9" probability="0.0104637" distribution="0 4 4 1">
+      <product order="4" probability="6.25e-06" contribution="0.000594884">
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.0118977">
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.0118977">
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+        <basic-event name="BE15"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.0118977">
+        <basic-event name="BE20"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.237954">
+        <basic-event name="BE20"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.237954">
+        <basic-event name="BE20"/>
+        <basic-event name="BE15"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.0118977">
+        <basic-event name="BE21"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.237954">
+        <basic-event name="BE21"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.237954">
+        <basic-event name="BE21"/>
+        <basic-event name="BE15"/>
+      </product>
+    </sum-of-products>
+    <sum-of-products initiating-event="INIT5" name="S6" basic-events="8" products="9" probability="0.0104637" distribution="0 4 4 1">
+      <product order="4" probability="6.25e-06" contribution="0.000594884">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.0118977">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.0118977">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE15"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.0118977">
+        <basic-event name="BE22"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.237954">
+        <basic-event name="BE22"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.237954">
+        <basic-event name="BE22"/>
+        <basic-event name="BE15"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.0118977">
+        <basic-event name="BE23"/>
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.237954">
+        <basic-event name="BE23"/>
+        <basic-event name="BE14"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.237954">
+        <basic-event name="BE23"/>
+        <basic-event name="BE15"/>
+      </product>
+    </sum-of-products>
+    <sum-of-products initiating-event="INIT5" name="S5" basic-events="4" products="3" probability="0.0997562" distribution="2 1">
+      <product order="2" probability="0.0025" contribution="0.0243902">
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.487805">
+        <basic-event name="BE14"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.487805">
+        <basic-event name="BE15"/>
+      </product>
+    </sum-of-products>
+    <sum-of-products initiating-event="INIT5" name="S4" basic-events="8" products="9" probability="0.0104637" distribution="0 4 4 1">
+      <product order="4" probability="6.25e-06" contribution="0.000594884">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.0118977">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE20"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.0118977">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+        <basic-event name="BE21"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.0118977">
+        <basic-event name="BE22"/>
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.237954">
+        <basic-event name="BE22"/>
+        <basic-event name="BE20"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.237954">
+        <basic-event name="BE22"/>
+        <basic-event name="BE21"/>
+      </product>
+      <product order="3" probability="0.000125" contribution="0.0118977">
+        <basic-event name="BE23"/>
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.237954">
+        <basic-event name="BE23"/>
+        <basic-event name="BE20"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.237954">
+        <basic-event name="BE23"/>
+        <basic-event name="BE21"/>
+      </product>
+    </sum-of-products>
+    <sum-of-products initiating-event="INIT5" name="S3" basic-events="4" products="3" probability="0.0997562" distribution="2 1">
+      <product order="2" probability="0.0025" contribution="0.0243902">
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.487805">
+        <basic-event name="BE20"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.487805">
+        <basic-event name="BE21"/>
+      </product>
+    </sum-of-products>
+    <sum-of-products initiating-event="INIT5" name="S2" basic-events="4" products="3" probability="0.0997562" distribution="2 1">
+      <product order="2" probability="0.0025" contribution="0.0243902">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.487805">
+        <basic-event name="BE22"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.487805">
+        <basic-event name="BE23"/>
+      </product>
+    </sum-of-products>
+    <sum-of-products initiating-event="INIT5" name="S1" warning="The set is UNITY/Base.; Probability may have been adjusted to 1." basic-events="0" products="1" probability="1" distribution="1">
+      <product order="1" probability="1" contribution="1"/>
+    </sum-of-products>
+    <sum-of-products name="FT1.G1" basic-events="4" products="4" probability="0.0571072" distribution="1 3">
+      <product order="2" probability="0.0025" contribution="0.0434783">
+        <basic-event name="BE11"/>
+        <basic-event name="BE12"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.0434783">
+        <basic-event name="BE11"/>
+        <basic-event name="BE13"/>
+      </product>
+      <product order="2" probability="0.0025" contribution="0.0434783">
+        <basic-event name="BE12"/>
+        <basic-event name="BE13"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.869565">
+        <basic-event name="BE10"/>
+      </product>
+    </sum-of-products>
+    <sum-of-products name="FT4.G7" basic-events="4" products="3" probability="0.0997562" distribution="2 1">
+      <product order="2" probability="0.0025" contribution="0.0243902">
+        <basic-event name="BE24"/>
+        <basic-event name="BE25"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.487805">
+        <basic-event name="BE22"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.487805">
+        <basic-event name="BE23"/>
+      </product>
+    </sum-of-products>
+    <sum-of-products name="FT2.G3" basic-events="4" products="3" probability="0.0997562" distribution="2 1">
+      <product order="2" probability="0.0025" contribution="0.0243902">
+        <basic-event name="BE16"/>
+        <basic-event name="BE17"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.487805">
+        <basic-event name="BE14"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.487805">
+        <basic-event name="BE15"/>
+      </product>
+    </sum-of-products>
+    <sum-of-products name="FT3.G5" basic-events="4" products="3" probability="0.0997562" distribution="2 1">
+      <product order="2" probability="0.0025" contribution="0.0243902">
+        <basic-event name="BE18"/>
+        <basic-event name="BE19"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.487805">
+        <basic-event name="BE20"/>
+      </product>
+      <product order="1" probability="0.05" contribution="0.487805">
+        <basic-event name="BE21"/>
+      </product>
+    </sum-of-products>
+  </results>
+</report>
