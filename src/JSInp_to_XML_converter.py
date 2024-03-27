@@ -37,7 +37,7 @@ class JSONtoXMLConverter:
 
     def _convert_initiatingevent_to_xml(self):
         event_tree_name = self.parsed_json_object.saphiresolveinput.get('header', {}).eventtree.name
-        initiating_event_id = str(self.parsed_json_object.saphiresolveinput.get('header', {}).eventtree.initevent)
+        initiating_event_id = "INIT"+str(self.parsed_json_object.saphiresolveinput.get('header', {}).eventtree.initevent)
 
         initiating_event_element = ET.Element('define-initiating-event',
                                                {'name': initiating_event_id, 'event-tree': event_tree_name})
@@ -51,7 +51,7 @@ class JSONtoXMLConverter:
 
         for event in eventlist:
                 if event.corrgate == "0":
-                    name = event.id
+                    name = "BE"+ event.id
                     label = event.name
                     value = event.value
 
@@ -68,12 +68,12 @@ class JSONtoXMLConverter:
 
         for ft_data in faulttreelist:
             ftheader = ft_data.ftheader  # Accessing attributes directly
-            name = str(ftheader.get("ftid"))  # Accessing name attribute of ftheader
+            name = "FT"+str(ftheader.get("ftid"))  # Accessing name attribute of ftheader
             ft = FaultTreeOpenPSA(name)
 
             gatelist = ft_data.gatelist
             for gate_data in gatelist:
-                gate_id = str(gate_data.gateid)
+                gate_id = "G"+ str(gate_data.gateid)
                 gate_type = gate_data.gatetype
                 gate_inputs = gate_data.gateinput
                 event_inputs = gate_data.eventinput
@@ -89,7 +89,7 @@ class JSONtoXMLConverter:
 
                     # Iterate through gate_inputs and add each input individually
                     for input_name in gate_inputs:
-                        input_name = str(input_name)  # Convert integer to string
+                        input_name = "G"+str(input_name)  # Convert integer to string
                         ft.add_gate(gate_id, gate_type, input_name)
                 elif "/" in gate_type:  # Custom gate type like "2/3"
                     min_required = gate_type.split("/")[0]
@@ -105,7 +105,7 @@ class JSONtoXMLConverter:
                     # Iterate through event_inputs and add each input individually
                     for input_name in event_inputs:
                         if input_name is not None:
-                            input_name = str(input_name)
+                            input_name = "B"+ str(input_name)
                             ft.add_basic_event(gate_id, input_name)
 
             combined_fault_trees.append(ft)
@@ -114,27 +114,6 @@ class JSONtoXMLConverter:
 
     @property
     def _convert_sequencelist_to_eventteee(self):
-        # Accessing sysgatelist attribute directly from parsed JSON object
-        sysgatelist = self.parsed_json_object.saphiresolveinput.get('sysgatelist', [])
-        # Accessing sequencelist attribute directly from parsed JSON object
-        sequencelist = self.parsed_json_object.saphiresolveinput.get('sequencelist', [])
-
-        event_tree_name = self.parsed_json_object.saphiresolveinput.get('header', {}).eventtree.name
-        event_tree = EventTree(event_tree_name)
-
-        # Iterate over both lists simultaneously
-        for functional_event in sysgatelist:
-            functional_event_name = str(functional_event.id)
-            event_tree.functional_events.append(functional_event_name)
-
-        logiclist =[]
-        for sequence in sequencelist:
-            seqid = "S"+str(sequence.seqid)
-            event_tree.sequences.append(seqid)
-
-            logic_list = sequence.logiclist
-            logiclist.append(logic_list)
-
         initial_state_data = {
             "name": "fork",
             "attributes": {"functional-event": ""},
@@ -179,26 +158,140 @@ class JSONtoXMLConverter:
             "name": "sequence",
             "attributes": {"name": ""}
         }
+        # Accessing sysgatelist attribute directly from parsed JSON object
+        sysgatelist = self.parsed_json_object.saphiresolveinput.get('sysgatelist', [])
+        # Accessing sequencelist attribute directly from parsed JSON object
+        sequencelist = self.parsed_json_object.saphiresolveinput.get('sequencelist', [])
+
+        event_tree_name = self.parsed_json_object.saphiresolveinput.get('header', {}).eventtree.name
+        event_tree = EventTree(event_tree_name)
+
+        # Iterate over both lists simultaneously
+        functional_event_list = []
+        for functional_event in sysgatelist:
+            functional_event_name = str(functional_event.id)
+            event_tree.functional_events.append(functional_event_name)
+            functional_event_list.append(functional_event_name)
+
+        faulttreelist = self.parsed_json_object.saphiresolveinput.get("faulttreelist", [])
+        top_gate_list = []
+        ft_id_list = []
+        for ft_data in faulttreelist:
+            top_gate_id = str(ft_data.gatelist[0].gateid)
+            ft_id = str(ft_data.ftheader.get("ftid"))
+            top_gate_list.append(top_gate_id)
+            ft_id_list.append(ft_id)
+
+
+        logiclist =[]
+        seq_id_list = []
+        for sequence in sequencelist:
+            seqid = "S"+str(sequence.seqid)
+            seq_id_list.append(seqid)
+            event_tree.sequences.append(seqid)
+
+            logic_list = sequence.logiclist
+            logiclist.append(logic_list)
+
 
         """fork#1 with 2 end sequences"""
+        # calling the functional event and top gate
+        initial_state_data["attributes"]["functional-event"] = functional_event_list[0]
+        initial_state_data["children"][-2]["children"][0]["children"][0]["children"][0]["attributes"]["name"] = \
+        ft_id_list[0] + "." + top_gate_list[0]
+        initial_state_data["children"][-1]["children"][0]["children"][0]["attributes"]["name"] = \
+            ft_id_list[0] + "." + top_gate_list[0]
+        # deep copy the initial state data
         final_state_data = self.deep_copy_dict(initial_state_data)
+        # calling the sequence name
+        sequence_element["attributes"]["name"] = seq_id_list[-1]
+        final_state_data["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
         """end fork#1"""
 
         """fork#2 with 4 end sequences"""
+        # calling the functional event and top gate
+        initial_state_data["attributes"]["functional-event"] = functional_event_list[1]
+        initial_state_data["children"][-2]["children"][0]["children"][0]["children"][0]["attributes"]["name"] = \
+            ft_id_list[1] + "." + top_gate_list[1]
+        initial_state_data["children"][-1]["children"][0]["children"][0]["attributes"]["name"] = \
+            ft_id_list[1] + "." + top_gate_list[1]
+        # deep copy the initial state data
         final_state_data["children"][-2]["children"].append(self.deep_copy_dict(initial_state_data))
-        final_state_data["children"][-1]["children"].append(self.deep_copy_dict(initial_state_data))
-        """end fork#2"""
+        # final_state_data["children"][-1]["children"].append(self.deep_copy_dict(initial_state_data))
+        # """end fork#2"""
 
         """fork#3 with 8 end sequences"""
+        # calling the functional event and top gate
+        initial_state_data["attributes"]["functional-event"] = functional_event_list[2]
+        initial_state_data["children"][-2]["children"][0]["children"][0]["children"][0]["attributes"]["name"] = \
+            ft_id_list[2] + "." + top_gate_list[2]
+        initial_state_data["children"][-1]["children"][0]["children"][0]["attributes"]["name"] = \
+            ft_id_list[2] + "." + top_gate_list[2]
         final_state_data["children"][-2]["children"][-1]["children"][-2]["children"].append(
             self.deep_copy_dict(initial_state_data))
         final_state_data["children"][-2]["children"][-1]["children"][-1]["children"].append(
             self.deep_copy_dict(initial_state_data))
-        final_state_data["children"][-1]["children"][-1]["children"][-2]["children"].append(
-            self.deep_copy_dict(initial_state_data))
-        final_state_data["children"][-1]["children"][-1]["children"][-1]["children"].append(
-            self.deep_copy_dict(initial_state_data))
+        # final_state_data["children"][-1]["children"][-1]["children"][-2]["children"].append(
+        #     self.deep_copy_dict(initial_state_data))
+        # final_state_data["children"][-1]["children"][-1]["children"][-1]["children"].append(
+        #     self.deep_copy_dict(initial_state_data))
         """end fork#3"""
+
+        """fork#4 with 16 end sequences"""
+        # calling the functional event and top gate
+        initial_state_data["attributes"]["functional-event"] = functional_event_list[3]
+        initial_state_data["children"][-2]["children"][0]["children"][0]["children"][0]["attributes"]["name"] = \
+            ft_id_list[3] + "." + top_gate_list[3]
+        initial_state_data["children"][-1]["children"][0]["children"][0]["attributes"]["name"] = \
+            ft_id_list[3] + "." + top_gate_list[3]
+        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
+            "children"].append(self.deep_copy_dict(initial_state_data))
+        # calling the sequence name
+        sequence_element["attributes"]["name"] = seq_id_list[0]
+        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
+            "children"][-1]["children"][-2]["children"].append(self.deep_copy_dict(sequence_element))
+        sequence_element["attributes"]["name"] = seq_id_list[1]
+        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
+            "children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
+
+        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-1][
+            "children"].append(self.deep_copy_dict(initial_state_data))
+        # calling the sequence name
+        sequence_element["attributes"]["name"] = seq_id_list[2]
+        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-1][
+            "children"][-1]["children"][-2]["children"].append(self.deep_copy_dict(sequence_element))
+        sequence_element["attributes"]["name"] = seq_id_list[3]
+        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-1][
+            "children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
+
+        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-2][
+            "children"].append(self.deep_copy_dict(initial_state_data))
+        # calling the sequence name
+        sequence_element["attributes"]["name"] = seq_id_list[4]
+        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-2][
+            "children"][-1]["children"][-2]["children"].append(self.deep_copy_dict(sequence_element))
+        sequence_element["attributes"]["name"] = seq_id_list[5]
+        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-2][
+            "children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
+
+        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-1][
+            "children"].append(self.deep_copy_dict(initial_state_data))
+        # calling the sequence name
+        sequence_element["attributes"]["name"] = seq_id_list[6]
+        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-1][
+            "children"][-1]["children"][-2]["children"].append(self.deep_copy_dict(sequence_element))
+        sequence_element["attributes"]["name"] = seq_id_list[7]
+        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-1][
+            "children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
+        # final_state_data["children"][-1]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
+        #     "children"].append(self.deep_copy_dict(initial_state_data))
+        # final_state_data["children"][-1]["children"][-1]["children"][-2]["children"][-1]["children"][-1][
+        #     "children"].append(self.deep_copy_dict(initial_state_data))
+        # final_state_data["children"][-1]["children"][-1]["children"][-1]["children"][-1]["children"][-2][
+        #     "children"].append(self.deep_copy_dict(initial_state_data))
+        # final_state_data["children"][-1]["children"][-1]["children"][-1]["children"][-1]["children"][-1][
+        #     "children"].append(self.deep_copy_dict(initial_state_data))
+        """end fork#4"""
 
         event_tree.initial_state = final_state_data
 
