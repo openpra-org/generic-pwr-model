@@ -143,14 +143,14 @@
 		<define-gate name="G1" role="private">
 			<or>
 				<gate name="G2"/>
-				<basic-event name="B10"/>
+				<basic-event name="BE10"/>
 			</or>
 		</define-gate>
 		<define-gate name="G2" role="private">
 			<atleast min="2">
-				<basic-event name="B11"/>
-				<basic-event name="B12"/>
-				<basic-event name="B13"/>
+				<basic-event name="BE11"/>
+				<basic-event name="BE12"/>
+				<basic-event name="BE13"/>
 			</atleast>
 		</define-gate>
 	</define-fault-tree>
@@ -158,15 +158,15 @@
 		<define-gate name="G3" role="private">
 			<or>
 				<gate name="G4"/>
-				<basic-event name="B14"/>
-				<basic-event name="B15"/>
+				<basic-event name="BE14"/>
+				<basic-event name="BE15"/>
 			</or>
 		</define-gate>
 		<define-gate name="G4" role="private">
 			<and>
 				<gate name="GNone"/>
-				<basic-event name="B16"/>
-				<basic-event name="B17"/>
+				<basic-event name="BE16"/>
+				<basic-event name="BE17"/>
 			</and>
 		</define-gate>
 	</define-fault-tree>
@@ -174,15 +174,15 @@
 		<define-gate name="G5" role="private">
 			<or>
 				<gate name="G6"/>
-				<basic-event name="B20"/>
-				<basic-event name="B21"/>
+				<basic-event name="BE20"/>
+				<basic-event name="BE21"/>
 			</or>
 		</define-gate>
 		<define-gate name="G6" role="private">
 			<and>
 				<gate name="GNone"/>
-				<basic-event name="B18"/>
-				<basic-event name="B19"/>
+				<basic-event name="BE18"/>
+				<basic-event name="BE19"/>
 			</and>
 		</define-gate>
 	</define-fault-tree>
@@ -190,15 +190,15 @@
 		<define-gate name="G7" role="private">
 			<or>
 				<gate name="G8"/>
-				<basic-event name="B22"/>
-				<basic-event name="B23"/>
+				<basic-event name="BE22"/>
+				<basic-event name="BE23"/>
 			</or>
 		</define-gate>
 		<define-gate name="G8" role="private">
 			<and>
 				<gate name="GNone"/>
-				<basic-event name="B24"/>
-				<basic-event name="B25"/>
+				<basic-event name="BE24"/>
+				<basic-event name="BE25"/>
 			</and>
 		</define-gate>
 	</define-fault-tree>

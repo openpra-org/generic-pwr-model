@@ -105,7 +105,7 @@ class JSONtoXMLConverter:
                     # Iterate through event_inputs and add each input individually
                     for input_name in event_inputs:
                         if input_name is not None:
-                            input_name = "B"+ str(input_name)
+                            input_name = "BE"+ str(input_name)
                             ft.add_basic_event(gate_id, input_name)
 
             combined_fault_trees.append(ft)
