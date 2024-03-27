@@ -1,45 +1,15 @@
 import xml.etree.ElementTree as ET
 from collections import deque
 
-
-class OPSAMEF:
-    def __init__(self):
-        self.initiating_event = None
-        self.event_tree = None
-        self.fault_trees = []
-        self.model_data = None
-
-    def to_xml(self):
-        opsa_mef_element = ET.Element('opsa-mef')
-
-        if self.initiating_event:
-            initiating_event_element = ET.SubElement(opsa_mef_element, 'define-initiating-event',
-                                                     {'name': self.initiating_event.name,
-                                                      'event-tree': self.event_tree.name})
-
-        if self.event_tree:
-            event_tree_element = self.event_tree.to_xml()
-            opsa_mef_element.append(event_tree_element)
-
-        for fault_tree in self.fault_trees:
-            fault_tree_element = fault_tree.to_xml()
-            opsa_mef_element.append(fault_tree_element)
-
-        if self.model_data:
-            model_data_element = self.model_data.to_xml()
-            opsa_mef_element.append(model_data_element)
-
-        return opsa_mef_element
-
-
 class EventTree:
     def __init__(self, name):
         self.name = name
         self.functional_events = []
         self.sequences = []
-        self.initial_state = None
+        self.initial_state = {}
 
     def to_xml(self):
+
         event_tree_element = ET.Element('define-event-tree', {'name': self.name})
 
         for functional_event in self.functional_events:
@@ -54,21 +24,27 @@ class EventTree:
             self._build_initial_state_xml(self.initial_state, initial_state_element)
 
         return event_tree_element
-
     def _build_initial_state_xml(self, state, parent_element):
         queue = deque([(state, parent_element)])  # Initialize a queue with the root element
         processed_elements = set()  # Track processed elements to avoid duplication
 
         while queue:
             current_state, current_parent = queue.popleft()  # Dequeue the current element
-            # if id(current_state) in processed_elements:
-                # continue  # Skip processing if the element has already been processed
+
+            # Check if the current_state has already been processed
+            if id(current_state) in processed_elements:
+                continue  # Skip processing if the element has already been processed
             processed_elements.add(id(current_state))
 
-            current_element = ET.SubElement(current_parent, current_state['name'], current_state.get('attributes', {}))
+            # Ensure the state dictionary has the 'name' key
+            state_name = current_state.get('name', 'unknown_element')
+            # Create the current element with its attributes
+            current_element = ET.SubElement(current_parent, state_name, current_state.get('attributes', {}))
 
+            # Iterate over the children of the current state
             for child in current_state.get('children', []):
-                queue.append((child, current_element))  # Enqueue child elements for processing
+                # Enqueue child elements for processing
+                queue.append((child, current_element))
 
 
 class FaultTreeOpenPSA:
