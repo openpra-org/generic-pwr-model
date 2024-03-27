@@ -1,0 +1,275 @@
+<?xml version="1.0" ?>
+<opsa-mef>
+	<define-initiating-event name="5" event-tree="GAS-LEAK"/>
+	<define-event-tree name="GAS-LEAK">
+		<define-functional-event name="1"/>
+		<define-functional-event name="2"/>
+		<define-functional-event name="3"/>
+		<define-functional-event name="4"/>
+		<define-sequence name="S1"/>
+		<define-sequence name="S2"/>
+		<define-sequence name="S3"/>
+		<define-sequence name="S4"/>
+		<define-sequence name="S5"/>
+		<define-sequence name="S6"/>
+		<define-sequence name="S7"/>
+		<define-sequence name="S8"/>
+		<define-sequence name="S9"/>
+		<initial-state>
+			<fork functional-event="1">
+				<path state="Success">
+					<collect-formula>
+						<not>
+							<gate name="1.1"/>
+						</not>
+					</collect-formula>
+					<fork functional-event="2">
+						<path state="Success">
+							<collect-formula>
+								<not>
+									<gate name="2.3"/>
+								</not>
+							</collect-formula>
+							<fork functional-event="3">
+								<path state="Success">
+									<collect-formula>
+										<not>
+											<gate name="3.5"/>
+										</not>
+									</collect-formula>
+									<fork functional-event="4">
+										<path state="Success">
+											<collect-formula>
+												<not>
+													<gate name="4.7"/>
+												</not>
+											</collect-formula>
+											<sequence name="S1"/>
+										</path>
+										<path state="Failure">
+											<collect-formula>
+												<gate name="4.7"/>
+											</collect-formula>
+											<sequence name="S2"/>
+										</path>
+									</fork>
+								</path>
+								<path state="Failure">
+									<collect-formula>
+										<gate name="3.5"/>
+									</collect-formula>
+									<fork functional-event="4">
+										<path state="Success">
+											<collect-formula>
+												<not>
+													<gate name="4.7"/>
+												</not>
+											</collect-formula>
+											<sequence name="S3"/>
+										</path>
+										<path state="Failure">
+											<collect-formula>
+												<gate name="4.7"/>
+											</collect-formula>
+											<sequence name="S4"/>
+										</path>
+									</fork>
+								</path>
+							</fork>
+						</path>
+						<path state="Failure">
+							<collect-formula>
+								<gate name="2.3"/>
+							</collect-formula>
+							<fork functional-event="3">
+								<path state="Success">
+									<collect-formula>
+										<not>
+											<gate name="3.5"/>
+										</not>
+									</collect-formula>
+									<fork functional-event="4">
+										<path state="Success">
+											<collect-formula>
+												<not>
+													<gate name="4.7"/>
+												</not>
+											</collect-formula>
+											<sequence name="S5"/>
+										</path>
+										<path state="Failure">
+											<collect-formula>
+												<gate name="4.7"/>
+											</collect-formula>
+											<sequence name="S6"/>
+										</path>
+									</fork>
+								</path>
+								<path state="Failure">
+									<collect-formula>
+										<gate name="3.5"/>
+									</collect-formula>
+									<fork functional-event="4">
+										<path state="Success">
+											<collect-formula>
+												<not>
+													<gate name="4.7"/>
+												</not>
+											</collect-formula>
+											<sequence name="S7"/>
+										</path>
+										<path state="Failure">
+											<collect-formula>
+												<gate name="4.7"/>
+											</collect-formula>
+											<sequence name="S8"/>
+										</path>
+									</fork>
+								</path>
+							</fork>
+						</path>
+					</fork>
+				</path>
+				<path state="Failure">
+					<collect-formula>
+						<gate name="1.1"/>
+					</collect-formula>
+					<sequence name="S9"/>
+				</path>
+			</fork>
+		</initial-state>
+	</define-event-tree>
+	<define-fault-tree name="1">
+		<define-gate name="1" role="private">
+			<or>
+				<gate name="2"/>
+				<basic-event name="10"/>
+			</or>
+		</define-gate>
+		<define-gate name="2" role="private">
+			<atleast min="2">
+				<basic-event name="11"/>
+				<basic-event name="12"/>
+				<basic-event name="13"/>
+			</atleast>
+		</define-gate>
+	</define-fault-tree>
+	<define-fault-tree name="2">
+		<define-gate name="3" role="private">
+			<or>
+				<gate name="4"/>
+				<basic-event name="14"/>
+				<basic-event name="15"/>
+			</or>
+		</define-gate>
+		<define-gate name="4" role="private">
+			<and>
+				<gate name="None"/>
+				<basic-event name="16"/>
+				<basic-event name="17"/>
+			</and>
+		</define-gate>
+	</define-fault-tree>
+	<define-fault-tree name="3">
+		<define-gate name="5" role="private">
+			<or>
+				<gate name="6"/>
+				<basic-event name="20"/>
+				<basic-event name="21"/>
+			</or>
+		</define-gate>
+		<define-gate name="6" role="private">
+			<and>
+				<gate name="None"/>
+				<basic-event name="18"/>
+				<basic-event name="19"/>
+			</and>
+		</define-gate>
+	</define-fault-tree>
+	<define-fault-tree name="4">
+		<define-gate name="7" role="private">
+			<or>
+				<gate name="8"/>
+				<basic-event name="22"/>
+				<basic-event name="23"/>
+			</or>
+		</define-gate>
+		<define-gate name="8" role="private">
+			<and>
+				<gate name="None"/>
+				<basic-event name="24"/>
+				<basic-event name="25"/>
+			</and>
+		</define-gate>
+	</define-fault-tree>
+	<model-data>
+		<define-basic-event name="5">
+			<label>INIT-EV</label>
+			<float value="1.000000E+00"/>
+		</define-basic-event>
+		<define-basic-event name="10">
+			<label>CPU</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="11">
+			<label>SEN-1</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="12">
+			<label>SEN-2</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="13">
+			<label>SEN-3</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="14">
+			<label>IVALA</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="15">
+			<label>RC1</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="16">
+			<label>SOLA</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="17">
+			<label>SOLB</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="18">
+			<label>SOLA-DUP</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="19">
+			<label>SOLB-DUP</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="20">
+			<label>IVALB</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="21">
+			<label>RC1-DUP</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="22">
+			<label>BDVAL</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="23">
+			<label>RC1-DUP-DUP</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="24">
+			<label>SOLC</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="25">
+			<label>SOLD</label>
+			<float value="5.000000E-02"/>
+		</define-basic-event>
+	</model-data>
+</opsa-mef>
