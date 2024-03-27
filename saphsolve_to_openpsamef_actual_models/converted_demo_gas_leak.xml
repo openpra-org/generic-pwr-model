@@ -2,10 +2,10 @@
 <opsa-mef>
 	<define-initiating-event name="INIT5" event-tree="GAS-LEAK"/>
 	<define-event-tree name="GAS-LEAK">
-		<define-functional-event name="1"/>
-		<define-functional-event name="2"/>
-		<define-functional-event name="3"/>
-		<define-functional-event name="4"/>
+		<define-functional-event name="FE1"/>
+		<define-functional-event name="FE2"/>
+		<define-functional-event name="FE3"/>
+		<define-functional-event name="FE4"/>
 		<define-sequence name="S1"/>
 		<define-sequence name="S2"/>
 		<define-sequence name="S3"/>
@@ -16,39 +16,39 @@
 		<define-sequence name="S8"/>
 		<define-sequence name="S9"/>
 		<initial-state>
-			<fork functional-event="1">
+			<fork functional-event="FE1">
 				<path state="Success">
 					<collect-formula>
 						<not>
-							<gate name="1.1"/>
+							<gate name="FT1.G1"/>
 						</not>
 					</collect-formula>
-					<fork functional-event="2">
+					<fork functional-event="FE2">
 						<path state="Success">
 							<collect-formula>
 								<not>
-									<gate name="2.3"/>
+									<gate name="FT2.G3"/>
 								</not>
 							</collect-formula>
-							<fork functional-event="3">
+							<fork functional-event="FE3">
 								<path state="Success">
 									<collect-formula>
 										<not>
-											<gate name="3.5"/>
+											<gate name="FT3.G5"/>
 										</not>
 									</collect-formula>
-									<fork functional-event="4">
+									<fork functional-event="FE4">
 										<path state="Success">
 											<collect-formula>
 												<not>
-													<gate name="4.7"/>
+													<gate name="FT4.G7"/>
 												</not>
 											</collect-formula>
 											<sequence name="S1"/>
 										</path>
 										<path state="Failure">
 											<collect-formula>
-												<gate name="4.7"/>
+												<gate name="FT4.G7"/>
 											</collect-formula>
 											<sequence name="S2"/>
 										</path>
@@ -56,20 +56,20 @@
 								</path>
 								<path state="Failure">
 									<collect-formula>
-										<gate name="3.5"/>
+										<gate name="FT3.G5"/>
 									</collect-formula>
-									<fork functional-event="4">
+									<fork functional-event="FE4">
 										<path state="Success">
 											<collect-formula>
 												<not>
-													<gate name="4.7"/>
+													<gate name="FT4.G7"/>
 												</not>
 											</collect-formula>
 											<sequence name="S3"/>
 										</path>
 										<path state="Failure">
 											<collect-formula>
-												<gate name="4.7"/>
+												<gate name="FT4.G7"/>
 											</collect-formula>
 											<sequence name="S4"/>
 										</path>
@@ -79,27 +79,27 @@
 						</path>
 						<path state="Failure">
 							<collect-formula>
-								<gate name="2.3"/>
+								<gate name="FT2.G3"/>
 							</collect-formula>
-							<fork functional-event="3">
+							<fork functional-event="FE3">
 								<path state="Success">
 									<collect-formula>
 										<not>
-											<gate name="3.5"/>
+											<gate name="FT3.G5"/>
 										</not>
 									</collect-formula>
-									<fork functional-event="4">
+									<fork functional-event="FE4">
 										<path state="Success">
 											<collect-formula>
 												<not>
-													<gate name="4.7"/>
+													<gate name="FT4.G7"/>
 												</not>
 											</collect-formula>
 											<sequence name="S5"/>
 										</path>
 										<path state="Failure">
 											<collect-formula>
-												<gate name="4.7"/>
+												<gate name="FT4.G7"/>
 											</collect-formula>
 											<sequence name="S6"/>
 										</path>
@@ -107,20 +107,20 @@
 								</path>
 								<path state="Failure">
 									<collect-formula>
-										<gate name="3.5"/>
+										<gate name="FT3.G5"/>
 									</collect-formula>
-									<fork functional-event="4">
+									<fork functional-event="FE4">
 										<path state="Success">
 											<collect-formula>
 												<not>
-													<gate name="4.7"/>
+													<gate name="FT4.G7"/>
 												</not>
 											</collect-formula>
 											<sequence name="S7"/>
 										</path>
 										<path state="Failure">
 											<collect-formula>
-												<gate name="4.7"/>
+												<gate name="FT4.G7"/>
 											</collect-formula>
 											<sequence name="S8"/>
 										</path>
@@ -132,7 +132,7 @@
 				</path>
 				<path state="Failure">
 					<collect-formula>
-						<gate name="1.1"/>
+						<gate name="FT1.G1"/>
 					</collect-formula>
 					<sequence name="S9"/>
 				</path>

@@ -169,7 +169,7 @@ class JSONtoXMLConverter:
         # Iterate over both lists simultaneously
         functional_event_list = []
         for functional_event in sysgatelist:
-            functional_event_name = str(functional_event.id)
+            functional_event_name = "FE"+str(functional_event.id)
             event_tree.functional_events.append(functional_event_name)
             functional_event_list.append(functional_event_name)
 
@@ -177,8 +177,8 @@ class JSONtoXMLConverter:
         top_gate_list = []
         ft_id_list = []
         for ft_data in faulttreelist:
-            top_gate_id = str(ft_data.gatelist[0].gateid)
-            ft_id = str(ft_data.ftheader.get("ftid"))
+            top_gate_id = "G"+str(ft_data.gatelist[0].gateid)
+            ft_id = "FT"+str(ft_data.ftheader.get("ftid"))
             top_gate_list.append(top_gate_id)
             ft_id_list.append(ft_id)
 
