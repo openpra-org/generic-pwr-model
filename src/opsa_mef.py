@@ -52,11 +52,18 @@ class FaultTreeOpenPSA:
         self.name = name
         self.elements = []
 
-    def add_gate(self, name, gate_type, gate_inputs):
+    def add_gate(self, name, gate_type):
         # Ensure gate_inputs is always stored as a list
+        # if not isinstance(gate_inputs, list):
+        #     gate_inputs = [gate_inputs]
+        self.elements.append({'type': 'gate', 'name': name, 'gate_type': gate_type})
+        # self.elements.append(
+        #     {'type': 'gate', 'name': name, 'gate_type': gate_type, 'gate_inputs': gate_inputs, 'sub_elements': []})
+
+    def add_gate_input(self, name, gate_inputs):
         if not isinstance(gate_inputs, list):
             gate_inputs = [gate_inputs]
-        self.elements.append({'type': 'gate', 'name': name, 'gate_type': gate_type, 'gate_inputs': gate_inputs, 'sub_elements': []})
+        self.elements.append({'type': 'gate_input', 'name': name, 'gate_inputs': gate_inputs})
 
     def add_basic_event(self, name, event_inputs):
         # Ensure gate_inputs is always stored as a list
@@ -86,29 +93,28 @@ class FaultTreeOpenPSA:
                 if gate_type == 'or' or gate_type == 'and':
                     # Handle OR and AND gates as before
                     gate_type_element = ET.SubElement(gate_element, gate_type)
-                    for input_name in element['gate_inputs']:
-                        if input_name is not None:
-                            ET.SubElement(gate_type_element, 'gate', {'name': input_name})
-                    for sub_element in element.get('sub_elements', []):
-                        sub_element_name = sub_element['name']
-                        ET.SubElement(gate_type_element, 'sub-element',
-                                                            {'name': sub_element_name})
                 else:
                     # Handle custom gate types like "2/3"
                     gate_type_element = ET.SubElement(gate_element, 'atleast', {'min': gate_type.split('/')[0]})
-                    for input_name in element['gate_inputs']:
-                        if input_name is not None:
-                            ET.SubElement(gate_type_element, 'basic-event', {'name': input_name})
+                    if element_type == "gate_input":
+                        for input_name in element['gate_inputs']:
+                            if input_name is not None:
+                                ET.SubElement(gate_type_element, 'gate', {'name': input_name})
+                    elif element_type == "basic_event":
+                        for input_name in element['event_inputs']:
+                            if input_name is not None:
+                                ET.SubElement(gate_type_element, 'basic-event', {'name': input_name})
+
+
+            elif element_type == 'gate_input':
+                for input_name in element['gate_inputs']:
+                    if input_name is not None:
+                        ET.SubElement(gate_type_element, 'gate', {'name': input_name})
 
             elif element_type == 'basic-event':
-                # Handle basic events as before
-                # basic_event_element = ET.SubElement(gate_type_element, 'basic-event', {'name': element_name})
                 for input_name in element['event_inputs']:
                     if input_name is not None:
                         ET.SubElement(gate_type_element, 'basic-event', {'name': input_name})
-                        # ET.SubElement(basic_event_element, 'input', {'name': input_name})
-                # label_element = ET.SubElement(basic_event_element, 'label')
-                # label_element.text = element_name  # Set the text of the label to the name of the basic event
 
         return fault_tree_element
 

@@ -77,23 +77,26 @@ class JSONtoXMLConverter:
                 gate_type = gate_data.gatetype
                 gate_inputs = gate_data.gateinput
                 event_inputs = gate_data.eventinput
+                complement_event_input = gate_data.compeventinput
 
                 if gate_type in ["or", "and"]:
+                    ft.add_gate(gate_id, gate_type)
+                elif "/" in gate_type:  # Custom gate type like "2/3"
+                    min_required = gate_type.split("/")[0]
+                    ft.add_gate(gate_id, min_required)  # Use min_required as gate_type
+                if gate_inputs is not None:
                     # Check if gate_inputs is an integer (indicating it's empty)
                     if isinstance(gate_inputs, int):
-                        gate_inputs = []  # Convert it to an empty list
+                        gate_inputs = []
                     else:
                         # Convert gate_inputs to a list if it's not already one
                         if not isinstance(gate_inputs, list):
                             gate_inputs = [gate_inputs]
-
                     # Iterate through gate_inputs and add each input individually
                     for input_name in gate_inputs:
-                        input_name = "G"+str(input_name)  # Convert integer to string
-                        ft.add_gate(gate_id, gate_type, input_name)
-                elif "/" in gate_type:  # Custom gate type like "2/3"
-                    min_required = gate_type.split("/")[0]
-                    ft.add_gate(gate_id, min_required, gate_inputs)  # Use min_required as gate_type
+                        if input_name is not None:
+                            input_name = "G"+ str(input_name)
+                            ft.add_gate_input(gate_id, input_name)
                 if event_inputs is not None:
                     # Check if gate_inputs is an integer (indicating it's empty)
                     if isinstance(event_inputs, int):
@@ -203,8 +206,8 @@ class JSONtoXMLConverter:
             ft_id_list[0] + "." + top_gate_list[0]
         # deep copy the initial state data
         final_state_data = self.deep_copy_dict(initial_state_data)
-        # calling the sequence name
-        sequence_element["attributes"]["name"] = seq_id_list[-1]
+        # # calling the sequence name
+        sequence_element["attributes"]["name"] = seq_id_list[0]
         final_state_data["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
         """end fork#1"""
 
@@ -217,6 +220,9 @@ class JSONtoXMLConverter:
             ft_id_list[1] + "." + top_gate_list[1]
         # deep copy the initial state data
         final_state_data["children"][-2]["children"].append(self.deep_copy_dict(initial_state_data))
+        # # calling the sequence name
+        sequence_element["attributes"]["name"] = seq_id_list[1]
+        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
         # final_state_data["children"][-1]["children"].append(self.deep_copy_dict(initial_state_data))
         # """end fork#2"""
 
@@ -229,8 +235,16 @@ class JSONtoXMLConverter:
             ft_id_list[2] + "." + top_gate_list[2]
         final_state_data["children"][-2]["children"][-1]["children"][-2]["children"].append(
             self.deep_copy_dict(initial_state_data))
-        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"].append(
-            self.deep_copy_dict(initial_state_data))
+
+        # calling the sequence name
+        # sequence_element["attributes"]["name"] = seq_id_list[1]
+        # final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
+        #     "children"].append(self.deep_copy_dict(sequence_element))
+        sequence_element["attributes"]["name"] = seq_id_list[2]
+        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-1][
+            "children"].append(self.deep_copy_dict(sequence_element))
+        # final_state_data["children"][-2]["children"][-1]["children"][-1]["children"].append(
+        #     self.deep_copy_dict(initial_state_data))
         # final_state_data["children"][-1]["children"][-1]["children"][-2]["children"].append(
         #     self.deep_copy_dict(initial_state_data))
         # final_state_data["children"][-1]["children"][-1]["children"][-1]["children"].append(
@@ -239,51 +253,51 @@ class JSONtoXMLConverter:
 
         """fork#4 with 16 end sequences"""
         # calling the functional event and top gate
-        initial_state_data["attributes"]["functional-event"] = functional_event_list[3]
-        initial_state_data["children"][-2]["children"][0]["children"][0]["children"][0]["attributes"]["name"] = \
-            ft_id_list[3] + "." + top_gate_list[3]
-        initial_state_data["children"][-1]["children"][0]["children"][0]["attributes"]["name"] = \
-            ft_id_list[3] + "." + top_gate_list[3]
-        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
-            "children"].append(self.deep_copy_dict(initial_state_data))
-        # calling the sequence name
-        sequence_element["attributes"]["name"] = seq_id_list[0]
-        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
-            "children"][-1]["children"][-2]["children"].append(self.deep_copy_dict(sequence_element))
-        sequence_element["attributes"]["name"] = seq_id_list[1]
-        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
-            "children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
-
-        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-1][
-            "children"].append(self.deep_copy_dict(initial_state_data))
-        # calling the sequence name
-        sequence_element["attributes"]["name"] = seq_id_list[2]
-        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-1][
-            "children"][-1]["children"][-2]["children"].append(self.deep_copy_dict(sequence_element))
-        sequence_element["attributes"]["name"] = seq_id_list[3]
-        final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-1][
-            "children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
-
-        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-2][
-            "children"].append(self.deep_copy_dict(initial_state_data))
-        # calling the sequence name
-        sequence_element["attributes"]["name"] = seq_id_list[4]
-        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-2][
-            "children"][-1]["children"][-2]["children"].append(self.deep_copy_dict(sequence_element))
-        sequence_element["attributes"]["name"] = seq_id_list[5]
-        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-2][
-            "children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
-
-        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-1][
-            "children"].append(self.deep_copy_dict(initial_state_data))
-        # calling the sequence name
-        sequence_element["attributes"]["name"] = seq_id_list[6]
-        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-1][
-            "children"][-1]["children"][-2]["children"].append(self.deep_copy_dict(sequence_element))
-        sequence_element["attributes"]["name"] = seq_id_list[7]
-        final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-1][
-            "children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
-        # final_state_data["children"][-1]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
+        # initial_state_data["attributes"]["functional-event"] = functional_event_list[3]
+        # initial_state_data["children"][-2]["children"][0]["children"][0]["children"][0]["attributes"]["name"] = \
+        #     ft_id_list[3] + "." + top_gate_list[3]
+        # initial_state_data["children"][-1]["children"][0]["children"][0]["attributes"]["name"] = \
+        #     ft_id_list[3] + "." + top_gate_list[3]
+        # final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
+        #     "children"].append(self.deep_copy_dict(initial_state_data))
+        # # calling the sequence name
+        # sequence_element["attributes"]["name"] = seq_id_list[0]
+        # final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
+        #     "children"][-1]["children"][-2]["children"].append(self.deep_copy_dict(sequence_element))
+        # sequence_element["attributes"]["name"] = seq_id_list[1]
+        # final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
+        #     "children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
+        #
+        # final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-1][
+        #     "children"].append(self.deep_copy_dict(initial_state_data))
+        # # calling the sequence name
+        # sequence_element["attributes"]["name"] = seq_id_list[2]
+        # final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-1][
+        #     "children"][-1]["children"][-2]["children"].append(self.deep_copy_dict(sequence_element))
+        # sequence_element["attributes"]["name"] = seq_id_list[3]
+        # final_state_data["children"][-2]["children"][-1]["children"][-2]["children"][-1]["children"][-1][
+        #     "children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
+        #
+        # final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-2][
+        #     "children"].append(self.deep_copy_dict(initial_state_data))
+        # # calling the sequence name
+        # sequence_element["attributes"]["name"] = seq_id_list[4]
+        # final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-2][
+        #     "children"][-1]["children"][-2]["children"].append(self.deep_copy_dict(sequence_element))
+        # sequence_element["attributes"]["name"] = seq_id_list[5]
+        # final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-2][
+        #     "children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
+        #
+        # final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-1][
+        #     "children"].append(self.deep_copy_dict(initial_state_data))
+        # # calling the sequence name
+        # sequence_element["attributes"]["name"] = seq_id_list[6]
+        # final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-1][
+        #     "children"][-1]["children"][-2]["children"].append(self.deep_copy_dict(sequence_element))
+        # sequence_element["attributes"]["name"] = seq_id_list[7]
+        # final_state_data["children"][-2]["children"][-1]["children"][-1]["children"][-1]["children"][-1][
+        #     "children"][-1]["children"][-1]["children"].append(self.deep_copy_dict(sequence_element))
+        # # final_state_data["children"][-1]["children"][-1]["children"][-2]["children"][-1]["children"][-2][
         #     "children"].append(self.deep_copy_dict(initial_state_data))
         # final_state_data["children"][-1]["children"][-1]["children"][-2]["children"][-1]["children"][-1][
         #     "children"].append(self.deep_copy_dict(initial_state_data))
