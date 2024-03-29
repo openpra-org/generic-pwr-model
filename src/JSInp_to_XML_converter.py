@@ -72,12 +72,13 @@ class JSONtoXMLConverter:
             ft = FaultTreeOpenPSA(name)
 
             gatelist = ft_data.gatelist
-            for gate_data in gatelist:
-                gate_id = "G"+ str(gate_data.gateid)
-                gate_type = gate_data.gatetype
-                gate_inputs = gate_data.gateinput
-                event_inputs = gate_data.eventinput
-                complement_event_input = gate_data.compeventinput
+            if gatelist is not None:  # Check if gatelist is not None
+                for gate_data in gatelist:
+                    gate_id = "G" + str(gate_data.gateid)
+                    gate_type = gate_data.gatetype
+                    gate_inputs = gate_data.gateinput
+                    event_inputs = gate_data.eventinput
+                    complement_event_input = gate_data.compeventinput
 
                 if gate_type in ["or", "and"]:
                     ft.add_gate(gate_id, gate_type)
@@ -180,10 +181,11 @@ class JSONtoXMLConverter:
         top_gate_list = []
         ft_id_list = []
         for ft_data in faulttreelist:
-            top_gate_id = "G"+str(ft_data.gatelist[0].gateid)
-            ft_id = "FT"+str(ft_data.ftheader.get("ftid"))
-            top_gate_list.append(top_gate_id)
-            ft_id_list.append(ft_id)
+            if ft_data.gatelist is not None:  # Check if gatelist is not None
+                top_gate_id = "G" + str(ft_data.gatelist[0].gateid)
+                ft_id = "FT" + str(ft_data.ftheader.get("ftid"))
+                top_gate_list.append(top_gate_id)
+                ft_id_list.append(ft_id)
 
 
         logiclist =[]
