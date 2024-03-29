@@ -1,0 +1,114 @@
+<?xml version="1.0" ?>
+<opsa-mef>
+	<define-initiating-event name="INIT3444" event-tree="LSSB"/>
+	<define-event-tree name="LSSB">
+		<define-functional-event name="FE62"/>
+		<define-sequence name="S8"/>
+	</define-event-tree>
+	<define-fault-tree name="FT62">
+		<define-gate name="G718" role="private">
+			<and>
+				<basic-event name="BE312"/>
+				<basic-event name="BE450"/>
+			</and>
+		</define-gate>
+	</define-fault-tree>
+	<model-data>
+		<define-basic-event name="BE312">
+			<label>HE-EQ6</label>
+		</define-basic-event>
+		<define-basic-event name="BE445">
+			<label>RPS-ROD-EQ1-BE</label>
+			<float value="2.497000E-06"/>
+		</define-basic-event>
+		<define-basic-event name="BE446">
+			<label>RPS-ROD-EQ2-BE</label>
+			<float value="3.823000E-03"/>
+		</define-basic-event>
+		<define-basic-event name="BE447">
+			<label>RPS-ROD-EQ3-BE</label>
+			<float value="5.625000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="BE448">
+			<label>RPS-ROD-EQ4-BE</label>
+			<float value="2.210000E-01"/>
+		</define-basic-event>
+		<define-basic-event name="BE449">
+			<label>RPS-ROD-EQ5-BE</label>
+			<float value="5.194000E-01"/>
+		</define-basic-event>
+		<define-basic-event name="BE450">
+			<label>RPS-ROD-EQ6-BE</label>
+			<float value="9.103000E-01"/>
+		</define-basic-event>
+		<define-basic-event name="BE3444">
+			<label>IE-LSSB</label>
+			<float value="3.010000E-04"/>
+		</define-basic-event>
+		<define-basic-event name="BE3456">
+			<label>HE-LOOP-A</label>
+		</define-basic-event>
+		<define-basic-event name="BE3634">
+			<label>RPS-BME-CF-RTBAB</label>
+			<float value="1.610000E-06"/>
+		</define-basic-event>
+		<define-basic-event name="BE3635">
+			<label>RPS-CBI-CF-4OF6</label>
+			<float value="8.210000E-06"/>
+		</define-basic-event>
+		<define-basic-event name="BE3636">
+			<label>RPS-CBI-CF-6OF8</label>
+			<float value="2.700000E-06"/>
+		</define-basic-event>
+		<define-basic-event name="BE3637">
+			<label>RPS-CCP-TM-CHA</label>
+			<float value="5.000000E-03"/>
+		</define-basic-event>
+		<define-basic-event name="BE3638">
+			<label>RPS-CCX-CF-4OF6</label>
+			<float value="6.330000E-06"/>
+		</define-basic-event>
+		<define-basic-event name="BE3639">
+			<label>RPS-CCX-CF-6OF8</label>
+			<float value="1.830000E-06"/>
+		</define-basic-event>
+		<define-basic-event name="BE3640">
+			<label>RPS-CRM-CF-RCCAS</label>
+			<float value="1.210000E-06"/>
+		</define-basic-event>
+		<define-basic-event name="BE3641">
+			<label>RPS-UVL-CF-UVDAB</label>
+			<float value="1.040000E-05"/>
+		</define-basic-event>
+		<define-basic-event name="BE3642">
+			<label>RPS-XHE-XM-NSGNL</label>
+			<float value="1.200000E-01"/>
+		</define-basic-event>
+		<define-basic-event name="BE3643">
+			<label>RPS-XHE-XM-SIGNL</label>
+			<float value="1.000000E-02"/>
+		</define-basic-event>
+		<define-basic-event name="BE3647">
+			<label>HE-LOOP-B</label>
+		</define-basic-event>
+		<define-basic-event name="BE3738">
+			<label>HE-EQ1</label>
+		</define-basic-event>
+		<define-basic-event name="BE3817">
+			<label>HE-EQ2</label>
+		</define-basic-event>
+		<define-basic-event name="BE3818">
+			<label>HE-EQ3</label>
+		</define-basic-event>
+		<define-basic-event name="BE3819">
+			<label>HE-EQ4</label>
+		</define-basic-event>
+		<define-basic-event name="BE3820">
+			<label>HE-EQ5</label>
+		</define-basic-event>
+		<define-basic-event name="BE3917">
+			<label>RPS-EQ-FT</label>
+			<float value="1.000000E+00"/>
+		</define-basic-event>
+	</model-data>
+</opsa-mef>
