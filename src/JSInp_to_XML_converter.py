@@ -58,7 +58,14 @@ class JSONtoXMLConverter:
                     if label in ["<TRUE>", "<FALSE>", "<PASS>"]:
                         continue
 
-                    model_data.add_basic_event(name, label=label, float_value=value)
+                    # Check if the value is "0.00000E+00"
+                    if value == "0.00000E+00":
+                        float_value = value
+                    else:
+                        # Format other float values using scientific notation with six digits of precision
+                        float_value = "{:.6E}".format(float(value))
+
+                    model_data.add_basic_event(name, label=label, float_value=float_value)
 
         return model_data
 

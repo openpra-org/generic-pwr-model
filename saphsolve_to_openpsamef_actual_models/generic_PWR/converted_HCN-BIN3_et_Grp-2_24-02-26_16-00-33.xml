@@ -430,12 +430,15 @@
 	<model-data>
 		<define-basic-event name="BE235">
 			<label>HE-LOOPPC</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE236">
 			<label>HE-LOOPSC</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE237">
 			<label>HE-LOOPGR</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE238">
 			<label>HE-LOOPWR</label>
@@ -443,9 +446,11 @@
 		</define-basic-event>
 		<define-basic-event name="BE239">
 			<label>HE-LOOPAV</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE312">
 			<label>HE-EQ6</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE493">
 			<label>IE-HCN-BIN3</label>
@@ -457,12 +462,15 @@
 		</define-basic-event>
 		<define-basic-event name="BE516">
 			<label>HE-HCN4</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE518">
 			<label>HE-TOR2</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE519">
 			<label>HE-TOR3</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3484">
 			<label>OEP-XHE-XL-NR08H</label>
@@ -470,12 +478,15 @@
 		</define-basic-event>
 		<define-basic-event name="BE3818">
 			<label>HE-EQ3</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3819">
 			<label>HE-EQ4</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3820">
 			<label>HE-EQ5</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3945">
 			<label>OEP-XHE-XL-NR08HGR</label>
@@ -583,9 +594,11 @@
 		</define-basic-event>
 		<define-basic-event name="BE3738">
 			<label>HE-EQ1</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3817">
 			<label>HE-EQ2</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE4587">
 			<label>EPS-DGN-LR-SBO</label>
@@ -725,9 +738,11 @@
 		</define-basic-event>
 		<define-basic-event name="BE75">
 			<label>HE-FLD-CVC</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE78">
 			<label>HE-FLD-SWS</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE79">
 			<label>HPI-MOV-CC-006A</label>
@@ -771,15 +786,19 @@
 		</define-basic-event>
 		<define-basic-event name="BE100">
 			<label>HE-FLD-SWSA</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE101">
 			<label>HE-FLD-SWSB</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE105">
 			<label>HE-FLD-4160VACA</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE106">
 			<label>HE-HWD</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE112">
 			<label>RCS-LOCA-CL1</label>
@@ -799,6 +818,7 @@
 		</define-basic-event>
 		<define-basic-event name="BE116">
 			<label>HE-FLD-4160VACB</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE132">
 			<label>CVC-MOV-CF-DIS</label>
@@ -842,6 +862,7 @@
 		</define-basic-event>
 		<define-basic-event name="BE146">
 			<label>HE-LOCA</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE147">
 			<label>SIS-CKV-CF-RCSCL</label>
@@ -1089,12 +1110,15 @@
 		</define-basic-event>
 		<define-basic-event name="BE513">
 			<label>HE-HCN1</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE514">
 			<label>HE-HCN2</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE517">
 			<label>HE-TOR1</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE552">
 			<label>RWST-TNK-HWD</label>
@@ -1266,6 +1290,7 @@
 		</define-basic-event>
 		<define-basic-event name="BE3456">
 			<label>HE-LOOP-A</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3458">
 			<label>ACP-CRB-CO-A106</label>
@@ -1461,9 +1486,11 @@
 		</define-basic-event>
 		<define-basic-event name="BE3647">
 			<label>HE-LOOP-B</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3665">
 			<label>HE-SBO</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3686">
 			<label>SWS-MDP-FR-1A</label>
@@ -1599,6 +1626,7 @@
 		</define-basic-event>
 		<define-basic-event name="BE77">
 			<label>HE-FLD-RHR</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE187">
 			<label>LPI-CKV-CC-001</label>
@@ -1930,6 +1958,7 @@
 		</define-basic-event>
 		<define-basic-event name="BE208">
 			<label>MSS-CND-FC-MAIN</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE209">
 			<label>IAS-SYS-FC-SYSTEM</label>
@@ -2017,6 +2046,7 @@
 		</define-basic-event>
 		<define-basic-event name="BE3827">
 			<label>HE-SGTR</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE64">
 			<label>CCW-AOV-OC-HTXA</label>
@@ -2032,12 +2062,15 @@
 		</define-basic-event>
 		<define-basic-event name="BE102">
 			<label>HE-FLD-CCW</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE103">
 			<label>HE-FLD-CCWA</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE104">
 			<label>HE-FLD-CCWB</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE120">
 			<label>CCW-XHE-XM-TRNC</label>
@@ -2297,6 +2330,7 @@
 		</define-basic-event>
 		<define-basic-event name="BE3532">
 			<label>HE-LOCCW</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3569">
 			<label>CCW-MDP-EQ-FT</label>
@@ -2668,6 +2702,7 @@
 		</define-basic-event>
 		<define-basic-event name="BE76">
 			<label>HE-FLD-AFW</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE260">
 			<label>AFW-PMP-CF-FR</label>
@@ -2987,6 +3022,7 @@
 		</define-basic-event>
 		<define-basic-event name="BE581">
 			<label>HE-FRI-AB-SIS</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3731">
 			<label>PPR-PRV-OO-001</label>
@@ -3282,6 +3318,7 @@
 		</define-basic-event>
 		<define-basic-event name="BE4064">
 			<label>FLX-SGP-REFILL</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE4068">
 			<label>FLX-XHE-XM-SGP</label>

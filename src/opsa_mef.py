@@ -139,7 +139,8 @@ class ModelData:
 
             if basic_event_data.get('float_value'):
                 # Format the float value to ensure proper display
-                float_value = "{:.6E}".format(basic_event_data['float_value'])
+                # float_value = "{:.6E}".format(basic_event_data['float_value'])
+                float_value = (basic_event_data['float_value'])
                 float_element = ET.SubElement(basic_event_element, 'float', {'value': float_value})
 
         return model_data_element

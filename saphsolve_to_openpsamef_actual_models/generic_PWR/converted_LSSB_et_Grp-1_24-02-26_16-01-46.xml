@@ -16,6 +16,7 @@
 	<model-data>
 		<define-basic-event name="BE312">
 			<label>HE-EQ6</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE445">
 			<label>RPS-ROD-EQ1-BE</label>
@@ -47,6 +48,7 @@
 		</define-basic-event>
 		<define-basic-event name="BE3456">
 			<label>HE-LOOP-A</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3634">
 			<label>RPS-BME-CF-RTBAB</label>
@@ -90,21 +92,27 @@
 		</define-basic-event>
 		<define-basic-event name="BE3647">
 			<label>HE-LOOP-B</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3738">
 			<label>HE-EQ1</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3817">
 			<label>HE-EQ2</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3818">
 			<label>HE-EQ3</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3819">
 			<label>HE-EQ4</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3820">
 			<label>HE-EQ5</label>
+			<float value="0.000000E+00"/>
 		</define-basic-event>
 		<define-basic-event name="BE3917">
 			<label>RPS-EQ-FT</label>
