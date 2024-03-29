@@ -135,12 +135,26 @@ class JSONParser:
         sysgatelist_data = saphsolve_input['saphiresolveinput']['sysgatelist']
         sysgatelist = [SysGate(**gate_data) for gate_data in sysgatelist_data]
 
+        # # Parse the 'faulttreelist' section
+        # faulttreelist_data = saphsolve_input['saphiresolveinput']['faulttreelist']
+        # faulttreelist = [FaultTree(
+        #     ftheader=fault['ftheader'],
+        #     gatelist=[Gate(**gate_data) for gate_data in fault['gatelist']]
+        # ) for fault in faulttreelist_data]
+
         # Parse the 'faulttreelist' section
         faulttreelist_data = saphsolve_input['saphiresolveinput']['faulttreelist']
-        faulttreelist = [FaultTree(
-            ftheader=fault['ftheader'],
-            gatelist=[Gate(**gate_data) for gate_data in fault['gatelist']]
-        ) for fault in faulttreelist_data]
+        faulttreelist = []
+        for fault in faulttreelist_data:
+            if 'gatelist' in fault:
+                gatelist = [Gate(**gate_data) for gate_data in fault['gatelist']]
+            else:
+                gatelist = None  # or any other appropriate value to represent absence of gatelist
+            fault_tree = FaultTree(
+                ftheader=fault['ftheader'],
+                gatelist=gatelist
+            )
+            faulttreelist.append(fault_tree)
 
         # Parse the 'sequencelist' section if it exists
         if 'sequencelist' in saphsolve_input['saphiresolveinput']:

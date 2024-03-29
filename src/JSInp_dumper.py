@@ -49,11 +49,24 @@ class JSONDumper:
     def _dump_sysgate(self, gate):
         return {key: self._handle_null_values(val) for key, val in gate.__dict__.items() if val is not None}
 
+    # def _dump_faulttree(self, tree):
+    #     fault_tree_dict = {
+    #         'ftheader': self._handle_null_values(tree.ftheader),
+    #         'gatelist': [{key: self._handle_null_values(val) for key, val in gate.__dict__.items() if val is not None} for gate in tree.gatelist]
+    #     }
+    #     return {key: self._handle_null_values(val) for key, val in fault_tree_dict.items() if val is not None}
+
     def _dump_faulttree(self, tree):
         fault_tree_dict = {
             'ftheader': self._handle_null_values(tree.ftheader),
-            'gatelist': [{key: self._handle_null_values(val) for key, val in gate.__dict__.items() if val is not None} for gate in tree.gatelist]
+            'gatelist': None  # Default value in case tree.gatelist is None
         }
+
+        if tree.gatelist is not None:
+            fault_tree_dict['gatelist'] = [
+                {key: self._handle_null_values(val) for key, val in gate.__dict__.items() if val is not None} for gate
+                in tree.gatelist]
+
         return {key: self._handle_null_values(val) for key, val in fault_tree_dict.items() if val is not None}
 
     def _dump_sequence(self, sequence):
