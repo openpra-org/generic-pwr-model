@@ -1,3 +1,5 @@
+import os
+
 from opsa_mef import ModelData, FaultTreeOpenPSA, EventTree
 import xml.etree.ElementTree as ET
 import json
@@ -205,6 +207,28 @@ class JSONtoXMLConverter:
             logic_list = sequence.logiclist
             logiclist.append(logic_list)
 
+        logiclist = self.convert_logiclist_to_binary(logiclist)
+
+        sq_count = self.parsed_json_object.saphiresolveinput.get('header', {}).sqcount
+        # Get the current directory of the Python script
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(current_directory, 'sequence_data.json')
+        # Load existing data from the JSON file (if any)
+        # Load existing data from the JSON file (if any)
+        existing_data = {}
+        try:
+            with open(file_path, 'r') as f:
+                existing_data = json.load(f)
+        except FileNotFoundError:
+            existing_data = {}
+
+        # Update the existing data with the new data
+        existing_data[event_tree_name+"-"+str (sq_count)] = logiclist
+
+        # Save the updated dictionary to a JSON file
+        with open(file_path, 'w') as f:
+            json.dump(existing_data, f)
+
 
         # """fork#1 with 2 end sequences"""
         # # calling the functional event and top gate
@@ -213,7 +237,7 @@ class JSONtoXMLConverter:
         # ft_id_list[0] + "." + top_gate_list[0]
         # initial_state_data["children"][-1]["children"][0]["children"][0]["attributes"]["name"] = \
         #     ft_id_list[0] + "." + top_gate_list[0]
-        # # deep copy the initial state data
+        # deep copy the initial state data
         # final_state_data = self.deep_copy_dict(initial_state_data)
         # # # calling the sequence name
         # sequence_element["attributes"]["name"] = seq_id_list[0]
@@ -258,9 +282,9 @@ class JSONtoXMLConverter:
         #     self.deep_copy_dict(initial_state_data))
         # final_state_data["children"][-1]["children"][-1]["children"][-1]["children"].append(
         #     self.deep_copy_dict(initial_state_data))
-        """end fork#3"""
+        # """end fork#3"""
 
-        """fork#4 with 16 end sequences"""
+        # """fork#4 with 16 end sequences"""
         # calling the functional event and top gate
         # initial_state_data["attributes"]["functional-event"] = functional_event_list[3]
         # initial_state_data["children"][-2]["children"][0]["children"][0]["children"][0]["attributes"]["name"] = \
@@ -314,7 +338,7 @@ class JSONtoXMLConverter:
         #     "children"].append(self.deep_copy_dict(initial_state_data))
         # final_state_data["children"][-1]["children"][-1]["children"][-1]["children"][-1]["children"][-1][
         #     "children"].append(self.deep_copy_dict(initial_state_data))
-        """end fork#4"""
+        # """end fork#4"""
 
         # event_tree.initial_state = final_state_data
 
@@ -325,7 +349,7 @@ class JSONtoXMLConverter:
         binary = bin(dec)[2:]  # Convert decimal to binary, excluding the '0b' prefix
         return binary
 
-    def decimal_to_binary_beid(self, dec):
+    def decimal_to_binary_id(self, dec):
         """Convert decimal to binary, extract the last 17 digits, and return their decimal representation."""
         binary = bin(dec)[2:]  # Convert decimal to binary, excluding the '0b' prefix
         last_17_binary = binary[-17:]  # Extract the last 17 digits
@@ -340,6 +364,21 @@ class JSONtoXMLConverter:
         """
         return {key: (self.deep_copy_dict(value) if isinstance(value, dict) else copy.deepcopy(value)) for key, value in
                 dictionary.items()}
+
+    def convert_logiclist_to_binary(self, logiclist):
+        binary_logiclist = []
+
+        for sublist in logiclist:
+            binary_sublist = []
+            for decimal_number in sublist:
+                # Check the length of the decimal number before conversion
+                suffix = 'f' if len(str(decimal_number)) == 6 else 's'
+                binary_number = self.decimal_to_binary_id(decimal_number)
+                binary_sublist.append(suffix + str(binary_number))
+            binary_logiclist.append(binary_sublist)
+
+        return binary_logiclist
+
 
 
 
