@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "saphireresults": {
+    "projectpath": "\"C:\\Users\\egeme\\Desktop\\models\\G-PWRModelV1.2\"",
+    "resulttype": "eventtree",
+    "resulttreeid": 8,
+    "initevent": 8,
+    "truncparam": {
+      "ettruncopt": "NormalProbCutOff",
+      "fttruncopt": "GlobalProbCutOff",
+      "sizeopt": "ENoTrunc",
+      "ettruncval": 1.000E-20,
+      "fttruncval": 1.000E-20,
+      "sizeval": 99,
+      "transrepl": false,
+      "transzones": false,
+      "translevel": "99",
+      "usedual": false,
+      "dualcutoff": 0.000E+00
+    },
+    "workspacepair": [
+      {
+      "ph": 1,
+      "mt": 1
+      }
+    ],
+    "flagnum": 0,
+    "sequencecount": 1,
+    "sequencelist": [
+               {
+      "resultseqid": 49,
+      "numcutsets": 1,
+      "valcutsets": 1.00000E-07,
+      "cutsetlist": [
+          {
+            "event": [
+              33819928
+            ]
+          }
+        ]
+  }
+]
+}
+}
