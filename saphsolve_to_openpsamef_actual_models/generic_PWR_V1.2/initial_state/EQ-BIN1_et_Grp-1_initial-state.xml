@@ -80,7 +80,7 @@
                                                                                                         </not>
                                                                                                     </collect-formula>
                                                                                                     <fork functional-event="F42">
-                                                                                                        <path state="Succees">
+                                                                                                        <path state="Success">
                                                                                                             <collect-formula>
                                                                                                                 <not>
                                                                                                                     <gate name="FT42.TOP"/>
