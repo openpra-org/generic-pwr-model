@@ -1,0 +1,51 @@
+<initial-state>
+    <fork functional-event="FE173">
+        <path state="Success">
+            <collect-formula>
+                <not>
+                    <gate name="FT173.TOP"/>
+                </not>
+            </collect-formula>
+            <fork functional-event="FE175">
+                <path state="Success">
+                    <collect-formula>
+                        <not>
+                            <gate name="FT175.TOP"/>
+                        </not>
+                    </collect-formula>
+                    <fork functional-event="FE179">
+                        <path state="Success">
+                            <collect-formula>
+                                <gate name="FT179.TOP"/>
+                            </collect-formula>
+                            <fork functional-event="FE177">
+                                <path state="Success">
+                                    <collect-formula>
+                                        <not>
+                                            <gate name="FT177.TOP"/>
+                                        </not>
+                                    </collect-formula>
+                                    <fork functional-event="FE62">
+                                        <path state="Failure">
+                                            <collect-formula>
+                                                <gate name="FT62.TOP"/>
+                                            </collect-formula>
+                                            <fork functional-event="FE141">
+                                                <path state="Failure">
+                                                    <collect-formula>
+                                                        <gate name="FT141.TOP"/>
+                                                    </collect-formula>
+                                                    <sequence name="S239"/>
+                                                </path>
+                                            </fork>
+                                        </path>
+                                    </fork>
+                                </path>
+                            </fork>
+                        </path>
+                    </fork>
+                </path>
+            </fork>
+        </path>
+    </fork>
+</initial-state>
