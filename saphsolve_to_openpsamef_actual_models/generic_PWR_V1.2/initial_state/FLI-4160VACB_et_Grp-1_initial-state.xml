@@ -455,7 +455,7 @@
                                             <collect-formula>
                                                 <gate name="FT4.TOP"/>
                                             </collect-formula>
-                                            <sequence name="S1334"/>
+                                            <sequence name="S1344"/>
                                         </path>
                                     </fork>
                                 </path>
