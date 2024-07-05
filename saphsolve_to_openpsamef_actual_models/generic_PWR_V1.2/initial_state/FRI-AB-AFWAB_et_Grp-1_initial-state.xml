@@ -68,7 +68,7 @@
                                                                                             <collect-formula>
                                                                                                 <gate name="FT57.TOP"/>
                                                                                             </collect-formula>
-                                                                                            <sequence name="S1807"/>
+                                                                                            <sequence name="S1813"/>
                                                                                         </path>
                                                                                     </fork>
                                                                                 </path>
@@ -76,7 +76,7 @@
                                                                                     <collect-formula>
                                                                                         <gate name="FT42.TOP"/>
                                                                                     </collect-formula>
-                                                                                    <sequence name="S1806"/>
+                                                                                    <sequence name="S1812"/>
                                                                                 </path>
                                                                             </fork>
                                                                         </path>
@@ -84,7 +84,7 @@
                                                                             <collect-formula>
                                                                                 <gate name="FT26.TOP"/>
                                                                             </collect-formula>
-                                                                            <sequence name="S1805"/>
+                                                                            <sequence name="S1811"/>
                                                                         </path>
                                                                     </fork>
                                                                 </path>
@@ -92,7 +92,7 @@
                                                                     <collect-formula>
                                                                         <gate name="FT51.TOP"/>
                                                                     </collect-formula>
-                                                                    <sequence name="S1804"/>
+                                                                    <sequence name="S1810"/>
                                                                 </path>
                                                             </fork>
                                                         </path>
@@ -128,7 +128,7 @@
                                                                                     <collect-formula>
                                                                                         <gate name="FT57.TOP"/>
                                                                                     </collect-formula>
-                                                                                    <sequence name="S1803"/>
+                                                                                    <sequence name="S1809"/>
                                                                                 </path>
                                                                             </fork>
                                                                         </path>
@@ -136,7 +136,7 @@
                                                                             <collect-formula>
                                                                                 <gate name="FT42.TOP"/>
                                                                             </collect-formula>
-                                                                            <sequence name="S1802"/>
+                                                                            <sequence name="S1808"/>
                                                                         </path>
                                                                     </fork>
                                                                 </path>
@@ -144,7 +144,7 @@
                                                                     <collect-formula>
                                                                         <gate name="FT26.TOP"/>
                                                                     </collect-formula>
-                                                                    <sequence name="S1801"/>
+                                                                    <sequence name="S1807"/>
                                                                 </path>
                                                             </fork>
                                                         </path>
