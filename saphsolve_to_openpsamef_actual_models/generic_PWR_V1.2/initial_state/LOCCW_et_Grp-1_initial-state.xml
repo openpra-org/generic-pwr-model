@@ -1,0 +1,24 @@
+<initial-state>
+    <fork functional-event="FE224">
+        <path state="Failure">
+            <collect-formula>
+                <gate name="FT224.TOP"/>
+            </collect-formula>
+            <fork functional-event="FE62">
+                <path state="Failure">
+                    <collect-formula>
+                        <gate name="FT62.TOP"/>
+                    </collect-formula>
+                    <fork functional-event="FE141">
+                        <path state="Failure">
+                            <collect-formula>
+                                <gate name="FT141.TOP"/>
+                            </collect-formula>
+                            <sequence name="S140"/>
+                        </path>
+                    </fork>
+                </path>
+            </fork>
+        </path>
+    </fork>
+</initial-state>
