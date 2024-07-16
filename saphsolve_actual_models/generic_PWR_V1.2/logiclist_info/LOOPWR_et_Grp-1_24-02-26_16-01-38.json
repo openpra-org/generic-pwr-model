@@ -40971,7 +40971,7 @@
                 "numlogic": 2,
                 "blocksize": 2,
                 "logiclist": [
-                    "f65",
+                    "f62",
                     "f83"
                 ]
             },
@@ -41518,7 +41518,7 @@
                 "numlogic": 3,
                 "blocksize": 3,
                 "logiclist": [
-                    "f65",
+                    "f62",
                     "s83",
                     "f141"
                 ]
@@ -41532,7 +41532,7 @@
                 "numlogic": 4,
                 "blocksize": 4,
                 "logiclist": [
-                    "f65",
+                    "f62",
                     "s83",
                     "s141",
                     "f142"
@@ -41547,7 +41547,7 @@
                 "numlogic": 5,
                 "blocksize": 5,
                 "logiclist": [
-                    "f65",
+                    "f62",
                     "s83",
                     "s141",
                     "s142",
@@ -41563,7 +41563,7 @@
                 "numlogic": 8,
                 "blocksize": 8,
                 "logiclist": [
-                    "f65",
+                    "f62",
                     "s83",
                     "s141",
                     "s142",
@@ -41582,7 +41582,7 @@
                 "numlogic": 9,
                 "blocksize": 9,
                 "logiclist": [
-                    "f65",
+                    "f62",
                     "s83",
                     "s141",
                     "s142",
