@@ -1,0 +1,239 @@
+<initial-state>
+    <fork functional-event="FE62">
+        <path state="Success">
+            <collect-formula>
+                <not>
+                    <gate name="FT62.TOP"/>
+                </not>
+            </collect-formula>
+            <fork functional-event="FE92">
+                <path state="Failure">
+                    <collect-formula>
+                        <gate name="FT92.TOP"/>
+                    </collect-formula>
+                    <fork functional-event="FE3">
+                        <path state="Success">
+                            <collect-formula>
+                                <not>
+                                    <gate name="FT3.TOP"/>
+                                </not>
+                            </collect-formula>
+                            <fork functional-event="FE26">
+                                <path state="Success">
+                                    <collect-formula>
+                                        <not>
+                                            <gate name="FT26.TOP"/>
+                                        </not>
+                                    </collect-formula>
+                                    <fork functional-event="FE79">
+                                        <path state="Success">
+                                            <collect-formula>
+                                                <not>
+                                                    <gate name="FT79.TOP"/>
+                                                </not>
+                                            </collect-formula>
+                                            <fork functional-event="FE55">
+                                                <path state="Success">
+                                                    <collect-formula>
+                                                        <not>
+                                                            <gate name="FT55.TOP"/>
+                                                        </not>
+                                                    </collect-formula>
+                                                    <fork functional-event="FE84">
+                                                        <path state="Success">
+                                                            <collect-formula>
+                                                                <not>
+                                                                    <gate name="FT84.TOP"/>
+                                                                </not>
+                                                            </collect-formula>
+                                                            <fork functional-event="FE56">
+                                                                <path state="Failure">
+                                                                    <collect-formula>
+                                                                        <gate name="FT56.TOP"/>
+                                                                    </collect-formula>
+                                                                    <fork functional-event="FE116">
+                                                                        <path state="Failure">
+                                                                            <collect-formula>
+                                                                                <gate name="FT116.TOP"/>
+                                                                            </collect-formula>
+                                                                            <sequence name="S26"/>
+                                                                        </path>
+                                                                    </fork>
+                                                                </path>
+                                                            </fork>
+                                                        </path>
+                                                        <path state="Failure">
+                                                            <collect-formula>
+                                                                <gate name="FT84.TOP"/>
+                                                            </collect-formula>
+                                                            <fork functional-event="FE117">
+                                                                <path state="Failure">
+                                                                    <collect-formula>
+                                                                        <gate name="FT117.TOP"/>
+                                                                    </collect-formula>
+                                                                    <fork functional-event="FE86">
+                                                                        <path state="Failure">
+                                                                            <collect-formula>
+                                                                                <gate name="FT86.TOP"/>
+                                                                            </collect-formula>
+                                                                            <sequence name="S25"/>
+                                                                        </path>
+                                                                    </fork>
+                                                                </path>
+                                                            </fork>
+                                                        </path>
+                                                    </fork>
+                                                </path>
+                                                <path state="Failure">
+                                                    <collect-formula>
+                                                        <gate name="FT55.TOP"/>
+                                                    </collect-formula>
+                                                    <fork functional-event="FE120">
+                                                        <path state="Failure">
+                                                            <collect-formula>
+                                                                <gate name="FT120.TOP"/>
+                                                            </collect-formula>
+                                                            <fork functional-event="FE86">
+                                                                <path state="Failure">
+                                                                    <collect-formula>
+                                                                        <gate name="FT86.TOP"/>
+                                                                    </collect-formula>
+                                                                    <sequence name="S24"/>
+                                                                </path>
+                                                            </fork>
+                                                        </path>
+                                                    </fork>
+                                                </path>
+                                            </fork>
+                                        </path>
+                                        <path state="Failure">
+                                            <collect-formula>
+                                                <gate name="FT79.TOP"/>
+                                            </collect-formula>
+                                            <fork functional-event="FE120">
+                                                <path state="Failure">
+                                                    <collect-formula>
+                                                        <gate name="FT120.TOP"/>
+                                                    </collect-formula>
+                                                    <fork functional-event="FE86">
+                                                        <path state="Failure">
+                                                            <collect-formula>
+                                                                <gate name="FT86.TOP"/>
+                                                            </collect-formula>
+                                                            <sequence name="S23"/>
+                                                        </path>
+                                                    </fork>
+                                                </path>
+                                            </fork>
+                                        </path>
+                                    </fork>
+                                </path>
+                                <path state="Failure">
+                                    <collect-formula>
+                                        <gate name="FT26.TOP"/>
+                                    </collect-formula>
+                                    <fork functional-event="FE128">
+                                        <path state="Success">
+                                            <collect-formula>
+                                                <not>
+                                                    <gate name="FT128.TOP"/>
+                                                </not>
+                                            </collect-formula>
+                                            <fork functional-event="FE121">
+                                                <path state="Success">
+                                                    <collect-formula>
+                                                        <not>
+                                                            <gate name="FT121.TOP"/>
+                                                        </not>
+                                                    </collect-formula>
+                                                    <fork functional-event="FE56">
+                                                        <path state="Failure">
+                                                            <collect-formula>
+                                                                <gate name="FT56.TOP"/>
+                                                            </collect-formula>
+                                                            <sequence name="S22"/>
+                                                        </path>
+                                                    </fork>
+                                                </path>
+                                                <path state="Failure">
+                                                    <collect-formula>
+                                                        <gate name="FT121.TOP"/>
+                                                    </collect-formula>
+                                                    <sequence name="S21"/>
+                                                </path>
+                                            </fork>
+                                        </path>
+                                        <path state="Failure">
+                                            <collect-formula>
+                                                <gate name="FT128.TOP"/>
+                                            </collect-formula>
+                                            <sequence name="S20"/>
+                                        </path>
+                                    </fork>
+                                </path>
+                            </fork>
+                        </path>
+                        <path state="Failure">
+                            <collect-formula>
+                                <gate name="FT3.TOP"/>
+                            </collect-formula>
+                            <fork functional-event="FE26">
+                                <path state="Success">
+                                    <collect-formula>
+                                        <not>
+                                            <gate name="FT26.TOP"/>
+                                        </not>
+                                    </collect-formula>
+                                    <fork functional-event="FE79">
+                                        <path state="Success">
+                                            <collect-formula>
+                                                <not>
+                                                    <gate name="FT79.TOP"/>
+                                                </not>
+                                            </collect-formula>
+                                            <fork functional-event="FE4">
+                                                <path state="Success">
+                                                    <collect-formula>
+                                                        <not>
+                                                            <gate name="FT4.TOP"/>
+                                                        </not>
+                                                    </collect-formula>
+                                                    <fork functional-event="FE57">
+                                                        <path state="Failure">
+                                                            <collect-formula>
+                                                                <gate name="FT57.TOP"/>
+                                                            </collect-formula>
+                                                            <sequence name="S19"/>
+                                                        </path>
+                                                    </fork>
+                                                </path>
+                                                <path state="Failure">
+                                                    <collect-formula>
+                                                        <gate name="FT4.TOP"/>
+                                                    </collect-formula>
+                                                    <sequence name="S18"/>
+                                                </path>
+                                            </fork>
+                                        </path>
+                                        <path state="Failure">
+                                            <collect-formula>
+                                                <gate name="FT79.TOP"/>
+                                            </collect-formula>
+                                            <sequence name="S17"/>
+                                        </path>
+                                    </fork>
+                                </path>
+                                <path state="Failure">
+                                    <collect-formula>
+                                        <gate name="FT26.TOP"/>
+                                    </collect-formula>
+                                    <sequence name="S16"/>
+                                </path>
+                            </fork>
+                        </path>
+                    </fork>
+                </path>
+            </fork>
+        </path>
+    </fork>
+</initial-state>
