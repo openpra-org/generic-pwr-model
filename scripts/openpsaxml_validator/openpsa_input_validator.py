@@ -40,6 +40,6 @@ def main(xml_directory, schema_file, log_file):
 
 if __name__ == "__main__":
     xml_directory = "/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/openpsamef_actual_models/input/Aralia"
-    schema_file = "/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/openpsa_schema/input.rng"
+    schema_file = "/openpsa_schema_2.0.d/input.rng"
     log_file = "validation_log.csv"
     main(xml_directory, schema_file, log_file)
