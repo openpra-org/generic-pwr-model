@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 from collections import deque
+from xml.sax.saxutils import escape
 
 class EventTree:
     def __init__(self, name):
@@ -146,7 +147,7 @@ class ModelData:
 
             if basic_event_data.get('label'):
                 label_element = ET.SubElement(basic_event_element, 'label')
-                label_element.text = basic_event_data['label']
+                label_element.text = escape(basic_event_data['label'])
 
             if basic_event_data.get('float_value'):
                 # Format the float value to ensure proper display
