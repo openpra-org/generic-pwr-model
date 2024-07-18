@@ -102,7 +102,7 @@ def main():
 
     # Convert JSON to XML
     json_to_xml_input_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/saphsolve_actual_models/generic_PWR_V1.2/'
-    xml_converted_output_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/saphsolve_to_openpsamef_actual_models/dump/'
+    xml_converted_output_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/'
 
     # # Perform JSON parsing and dumping
     # parse_and_dump_json(json_input_directory, json_output_directory)
