@@ -13,7 +13,7 @@
 		<define-sequence name="S830"/>
 	</define-event-tree>
 	<define-fault-tree name="FT42">
-		<define-gate name="G3" role="private">
+		<define-gate name="TOP" role="private">
 			<or>
 				<basic-event name="BE3533"/>
 				<basic-event name="BE3623"/>
@@ -1313,7 +1313,7 @@
 		</define-gate>
 	</define-fault-tree>
 	<define-fault-tree name="FT44">
-		<define-gate name="G3" role="private">
+		<define-gate name="TOP" role="private">
 			<or>
 				<basic-event name="BE3533"/>
 				<basic-event name="BE3623"/>
@@ -3047,7 +3047,7 @@
 		</define-gate>
 	</define-fault-tree>
 	<define-fault-tree name="FT51">
-		<define-gate name="G10" role="private">
+		<define-gate name="TOP" role="private">
 			<or>
 				<gate name="G15"/>
 				<gate name="G19"/>
@@ -3201,7 +3201,7 @@
 		</define-gate>
 	</define-fault-tree>
 	<define-fault-tree name="FT173">
-		<define-gate name="G765" role="private">
+		<define-gate name="TOP" role="private">
 			<or>
 				<basic-event name="BE282"/>
 				<basic-event name="BE283"/>
@@ -3209,7 +3209,7 @@
 		</define-gate>
 	</define-fault-tree>
 	<define-fault-tree name="FT175">
-		<define-gate name="G767" role="private">
+		<define-gate name="TOP" role="private">
 			<or>
 				<basic-event name="BE298"/>
 				<basic-event name="BE299"/>
@@ -3217,7 +3217,7 @@
 		</define-gate>
 	</define-fault-tree>
 	<define-fault-tree name="FT177">
-		<define-gate name="G769" role="private">
+		<define-gate name="TOP" role="private">
 			<or>
 				<basic-event name="BE3925"/>
 			</or>

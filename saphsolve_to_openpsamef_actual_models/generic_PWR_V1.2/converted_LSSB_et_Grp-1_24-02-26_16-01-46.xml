@@ -6,7 +6,7 @@
 		<define-sequence name="S8"/>
 	</define-event-tree>
 	<define-fault-tree name="FT62">
-		<define-gate name="G342" role="private">
+		<define-gate name="TOP" role="private">
 			<or>
 				<gate name="G343"/>
 				<gate name="G716"/>

@@ -9,14 +9,14 @@
 		<define-sequence name="S4"/>
 	</define-event-tree>
 	<define-fault-tree name="FT69">
-		<define-gate name="G33" role="private">
+		<define-gate name="TOP" role="private">
 			<or>
 				<basic-event name="BE168"/>
 			</or>
 		</define-gate>
 	</define-fault-tree>
 	<define-fault-tree name="FT71">
-		<define-gate name="G373" role="private">
+		<define-gate name="TOP" role="private">
 			<or>
 				<basic-event name="BE185"/>
 				<basic-event name="BE186"/>
@@ -24,7 +24,7 @@
 		</define-gate>
 	</define-fault-tree>
 	<define-fault-tree name="FT167">
-		<define-gate name="G761" role="private">
+		<define-gate name="TOP" role="private">
 			<or>
 				<basic-event name="BE4011"/>
 			</or>
