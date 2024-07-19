@@ -81,8 +81,13 @@ class JSONtoXMLConverter:
 
             gatelist = ft_data.gatelist
             if gatelist is not None:  # Check if gatelist is not None
+                first_gate = True  # Flag to check if the gate is the first one
                 for gate_data in gatelist:
-                    gate_id = "G" + str(gate_data.gateid)
+                    if first_gate:
+                        gate_id = "TOP"
+                        first_gate = False  # Set flag to False after processing the first gate
+                    else:
+                        gate_id = "G" + str(gate_data.gateid)
                     gate_type = gate_data.gatetype
                     gate_inputs = gate_data.gateinput
                     event_inputs = gate_data.eventinput
