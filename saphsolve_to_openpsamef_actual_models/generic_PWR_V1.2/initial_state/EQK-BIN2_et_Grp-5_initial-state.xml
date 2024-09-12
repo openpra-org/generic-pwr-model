@@ -105,6 +105,7 @@
                                                                                                                                     </collect-formula>
                                                                                                                                     <sequence name="S794"/>
                                                                                                                                 </path>
+                                                                                                                            </fork>
                                                                                                                         </path>
                                                                                                                         <path state="Failure">
                                                                                                                             <collect-formula>
@@ -484,7 +485,7 @@
                                                                                                                                     <gate name="FT189.TOP"/>
                                                                                                                                 </not>
                                                                                                                             </collect-formula>
-                                                                                                                            <sequence name="SE774"
+                                                                                                                            <sequence name="SE774"/>
                                                                                                                         </path>
                                                                                                                     </fork>
                                                                                                                 </path>
