@@ -123,6 +123,7 @@
                                                                                 <gate name="FT42.TOP"/>
                                                                             </collect-formula>
                                                                             <sequence name="S847"/>
+                                                                        </path>
                                                                     </fork>
                                                                 </path>
                                                                 <path state="Failure">
