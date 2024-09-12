@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 from collections import deque
+from xml.sax.saxutils import escape
 
 class EventTree:
     def __init__(self, name):
@@ -71,6 +72,12 @@ class FaultTreeOpenPSA:
             event_inputs= [event_inputs]
         self.elements.append({'type': 'basic-event', 'name': name, 'event_inputs': event_inputs})
 
+    def add_comp_event(self, name, complement_event_inputs):
+        # Ensure gate_inputs is always stored as a list
+        if not isinstance(complement_event_inputs, list):
+            complement_event_inputs= [complement_event_inputs]
+        self.elements.append({'type': 'comp-event', 'name': name, 'event_inputs': complement_event_inputs})
+
     def add_relationship(self, parent, child):
         for element in self.elements:
             if element['name'] == parent:
@@ -116,6 +123,11 @@ class FaultTreeOpenPSA:
                     if input_name is not None:
                         ET.SubElement(gate_type_element, 'basic-event', {'name': input_name})
 
+            elif element_type == 'comp-event':
+                for input_name in element['event_inputs']:
+                    if input_name is not None:
+                        comp_event_element = ET.SubElement(gate_type_element, 'not')
+                        ET.SubElement(comp_event_element, 'basic-event', {'name': input_name})
         return fault_tree_element
 
 
@@ -135,7 +147,7 @@ class ModelData:
 
             if basic_event_data.get('label'):
                 label_element = ET.SubElement(basic_event_element, 'label')
-                label_element.text = basic_event_data['label']
+                label_element.text = escape(basic_event_data['label'])
 
             if basic_event_data.get('float_value'):
                 # Format the float value to ensure proper display

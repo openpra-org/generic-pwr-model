@@ -81,12 +81,17 @@ class JSONtoXMLConverter:
 
             gatelist = ft_data.gatelist
             if gatelist is not None:  # Check if gatelist is not None
+                first_gate = True  # Flag to check if the gate is the first one
                 for gate_data in gatelist:
-                    gate_id = "G" + str(gate_data.gateid)
+                    if first_gate:
+                        gate_id = "TOP"
+                        first_gate = False  # Set flag to False after processing the first gate
+                    else:
+                        gate_id = "G" + str(gate_data.gateid)
                     gate_type = gate_data.gatetype
                     gate_inputs = gate_data.gateinput
                     event_inputs = gate_data.eventinput
-                    complement_event_input = gate_data.compeventinput
+                    complement_event_inputs = gate_data.compeventinput
 
                     if gate_type in ["or", "and"]:
                         ft.add_gate(gate_id, gate_type)
@@ -119,6 +124,20 @@ class JSONtoXMLConverter:
                             if input_name is not None:
                                 input_name = "BE"+ str(input_name)
                                 ft.add_basic_event(gate_id, input_name)
+
+                    if complement_event_inputs is not None:
+                        # Check if gate_inputs is an integer (indicating it's empty)
+                        if isinstance(complement_event_inputs, int):
+                            complement_event_inputs = []
+                        else:
+                            # Convert gate_inputs to a list if it's not already one
+                            if not isinstance(complement_event_inputs, list):
+                                complement_event_inputs = [complement_event_inputs]
+                        # Iterate through complement_event_inputs and add each input individually
+                        for input_name in complement_event_inputs:
+                            if input_name is not None:
+                                input_name = "BE"+ str(input_name)
+                                ft.add_comp_event(gate_id, input_name)
 
             combined_fault_trees.append(ft)
 

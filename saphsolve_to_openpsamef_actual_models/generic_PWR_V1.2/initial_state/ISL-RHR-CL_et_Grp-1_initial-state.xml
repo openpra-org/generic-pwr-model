@@ -1,0 +1,32 @@
+<initial-state>
+    <fork functional-event="FE68">
+        <path state="Failure">
+            <collect-formula>
+                <gate name="FT68.TOP"/>
+            </collect-formula>
+            <fork functional-event="FE167">
+                <path state="Success">
+                    <collect-formula>
+                        <not>
+                            <gate name="FT167.TOP"/>
+                        </not>
+                    </collect-formula>
+                    <fork functional-event="FE166">
+                        <path state="Failure">
+                            <collect-formula>
+                                <gate name="FT166.TOP"/>
+                            </collect-formula>
+                            <sequence name="S2"/>
+                        </path>
+                    </fork>
+                </path>
+                <path state="Failure">
+                    <collect-formula>
+                        <gate name="FT167.TOP"/>
+                    </collect-formula>
+                    <sequence name="S1"/>
+                </path>
+            </fork>
+        </path>
+    </fork>
+</initial-state>

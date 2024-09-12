@@ -6,7 +6,7 @@
 		<define-sequence name="S8"/>
 	</define-event-tree>
 	<define-fault-tree name="FT62">
-		<define-gate name="G342" role="private">
+		<define-gate name="TOP" role="private">
 			<or>
 				<gate name="G343"/>
 				<gate name="G716"/>
@@ -37,6 +37,9 @@
 			<and>
 				<basic-event name="BE3636"/>
 				<basic-event name="BE3642"/>
+				<not>
+					<basic-event name="BE3637"/>
+				</not>
 			</and>
 		</define-gate>
 		<define-gate name="G347" role="private">
@@ -57,6 +60,9 @@
 			<and>
 				<basic-event name="BE3639"/>
 				<basic-event name="BE3642"/>
+				<not>
+					<basic-event name="BE3637"/>
+				</not>
 			</and>
 		</define-gate>
 		<define-gate name="G350" role="private">
@@ -67,7 +73,14 @@
 			</and>
 		</define-gate>
 		<define-gate name="G351" role="private">
-			<and/>
+			<and>
+				<not>
+					<basic-event name="BE3456"/>
+				</not>
+				<not>
+					<basic-event name="BE3647"/>
+				</not>
+			</and>
 		</define-gate>
 		<define-gate name="G650" role="private">
 			<and>
