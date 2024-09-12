@@ -39,6 +39,7 @@
                                                     </collect-formula>
                                                     <sequence name="S728"/>
                                                 </path>
+                                            </fork>
                                         </path>
                                         <path state="Failure">
                                             <collect-formula>
