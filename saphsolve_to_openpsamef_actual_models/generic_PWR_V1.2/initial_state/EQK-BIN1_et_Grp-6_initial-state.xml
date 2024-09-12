@@ -115,6 +115,7 @@ meaning that FE65 can be treated as FE62.
                                                                                                                                     </collect-formula>
                                                                                                                                     <sequence name="S584"/>
                                                                                                                                 </path>
+                                                                                                                            </fork>
                                                                                                                         </path>
                                                                                                                         <path state="Failure">
                                                                                                                             <collect-formula>
