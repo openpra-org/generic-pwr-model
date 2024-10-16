@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<opsa-mef>
+	<define-initiating-event name="INIT3985" event-tree="ISL-RHR-HL"/>
+	<define-event-tree name="ISL-RHR-HL">
+		<define-functional-event name="FE69"/>
+		<define-functional-event name="FE71"/>
+		<define-functional-event name="FE167"/>
+		<define-sequence name="S3"/>
+		<define-sequence name="S4"/>
+	</define-event-tree>
+	<define-fault-tree name="FT69">
+		<define-gate name="TOP" role="private">
+			<or>
+				<basic-event name="BE168"/>
+			</or>
+		</define-gate>
+	</define-fault-tree>
+	<define-fault-tree name="FT71">
+		<define-gate name="TOP" role="private">
+			<or>
+				<basic-event name="BE185"/>
+				<basic-event name="BE186"/>
+			</or>
+		</define-gate>
+	</define-fault-tree>
+	<define-fault-tree name="FT167">
+		<define-gate name="TOP" role="private">
+			<or>
+				<basic-event name="BE4011"/>
+			</or>
+		</define-gate>
+	</define-fault-tree>
+	<model-data>
+		<define-basic-event name="BE168">
+			<label>ISL-PSF-RP-RHR</label>
+			<float value="1.000000E+00"/>
+		</define-basic-event>
+		<define-basic-event name="BE3985">
+			<label>IEFT-ISL-RHR-HLS-FT</label>
+			<float value="8.968000E-08"/>
+		</define-basic-event>
+		<define-basic-event name="BE185">
+			<label>ISL-XHE-XE-RECRHR</label>
+			<float value="1.000000E-01"/>
+		</define-basic-event>
+		<define-basic-event name="BE186">
+			<label>ISL-XHE-XE-NRECRHR</label>
+			<float value="1.000000E-01"/>
+		</define-basic-event>
+		<define-basic-event name="BE4011">
+			<label>ISL-XHE-XD-DIAG</label>
+			<float value="4.000000E-02"/>
+		</define-basic-event>
+	</model-data>
+</opsa-mef>
