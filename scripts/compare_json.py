@@ -14,8 +14,8 @@ def compare_json_files(file1_path, file2_path):
 
 
 # Example usage:
-file1_path = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/saphsolve_actual_models/EQK-BIN1_et_Grp-1_24-02-26_15-57-10.JSInp'
-file2_path = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/dumped_saphsolve_actual_models/dumped_EQK-BIN1_et_Grp-1_24-02-26_15-57-10.JSInp'
+file1_path = '.././saphsolve_actual_models/EQK-BIN1_et_Grp-1_24-02-26_15-57-10.JSInp'
+file2_path = '.././dumped_saphsolve_actual_models/dumped_EQK-BIN1_et_Grp-1_24-02-26_15-57-10.JSInp'
 
 result = compare_json_files(file1_path, file2_path)
 if result:

@@ -101,8 +101,8 @@ def main():
     # xml_output_directory = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/dumped_openpsamef_synthetical_models/'
 
     # Convert JSON to XML
-    json_to_xml_input_directory = '.././/saphsolve_actual_models/generic_PWR_V1.2.1/'
-    xml_converted_output_directory = '.././/saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2.1/'
+    json_to_xml_input_directory = '.././saphsolve_actual_models/generic_PWR_V1.2/'
+    xml_converted_output_directory = '.././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/'
 
     # # Perform JSON parsing and dumping
     # parse_and_dump_json(json_input_directory, json_output_directory)

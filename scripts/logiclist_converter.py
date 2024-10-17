@@ -63,8 +63,8 @@ def process_directory(input_dir, output_dir):
 
 
 def main():
-    input_dir = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/saphsolve_actual_models/generic_PWR_V1.2/'
-    output_dir = '/Users/afshar-flow/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/saphsolve_actual_models/generic_PWR_V1.2/logiclist_info'
+    input_dir = '.././saphsolve_actual_models/generic_PWR_V1.2/'
+    output_dir = '.././saphsolve_actual_models/generic_PWR_V1.2/logiclist_info'
 
     process_directory(input_dir, output_dir)
 
