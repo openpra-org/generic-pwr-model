@@ -1,15 +1,25 @@
 <?xml version="1.0" ?>
 <opsa-mef>
-	<define-initiating-event name="INIT3346" event-tree="XLOCA"/>
-	<define-event-tree name="XLOCA">
-		<define-functional-event name="FE133"/>
-		<define-sequence name="S49"/>
-	</define-event-tree>
-	<define-fault-tree name="FT133"/>
-	<model-data>
-		<define-basic-event name="BE3346">
-			<label>IE-XLOCA</label>
-			<float value="1.000000E-07"/>
-		</define-basic-event>
-	</model-data>
+    <define-initiating-event name="INIT3346" event-tree="XLOCA"/>
+    <define-event-tree name="XLOCA">
+        <define-functional-event name="FE133"/>
+        <define-sequence name="S49"/>
+        <initial-state>
+            <fork functional-event="FE133">
+                <path state="Failure">
+                    <collect-formula>
+                        <gate name="FT133.TOP"/>
+                    </collect-formula>
+                    <sequence name="S49"/>
+                </path>
+            </fork>
+        </initial-state>
+    </define-event-tree>
+    <define-fault-tree name="FT133"/>
+    <model-data>
+        <define-basic-event name="BE3346">
+            <label>IE-XLOCA</label>
+            <float value="1.000000E-07"/>
+        </define-basic-event>
+    </model-data>
 </opsa-mef>
