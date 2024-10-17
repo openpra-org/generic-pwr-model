@@ -1,20 +1,20 @@
 <opsa-mef>
     <define-initiating-event name="INIT3737" event-tree="EQK-BIN5" />
     <define-event-tree name="EQK-BIN5">
-        <define-functional-event name="FE3" />
-        <define-functional-event name="FE4" />
-        <define-functional-event name="FE26" />
-        <define-functional-event name="FE42" />
-        <define-functional-event name="FE44" />
-        <define-functional-event name="FE55" />
-        <define-functional-event name="FE56" />
-        <define-functional-event name="FE57" />
-        <define-functional-event name="FE62" />
-        <define-functional-event name="FE121" />
         <define-functional-event name="FE174" />
         <define-functional-event name="FE176" />
-        <define-functional-event name="FE178" />
         <define-functional-event name="FE180" />
+        <define-functional-event name="FE178" />
+        <define-functional-event name="FE62" />
+        <define-functional-event name="FE3" />
+        <define-functional-event name="FE26" />
+        <define-functional-event name="FE55" />
+        <define-functional-event name="FE121" />
+        <define-functional-event name="FE42" />
+        <define-functional-event name="FE56" />
+        <define-functional-event name="FE44" />
+        <define-functional-event name="FE4" />
+        <define-functional-event name="FE57" />
         <define-sequence name="S845" />
         <define-sequence name="S848" />
         <define-sequence name="S849" />
@@ -24,64 +24,64 @@
         <define-sequence name="S943" />
         <define-sequence name="S944" />
         <initial-state>
-            <fork functional-element="FE174">
+            <fork functional-event="FE174">
                 <path state="Success">
                     <collect-formula>
                         <not>
                             <gate name="FT174.TOP" />
                         </not>
                     </collect-formula>
-                    <fork functional-element="FE176">
+                    <fork functional-event="FE176">
                         <path state="Success">
                             <collect-formula>
                                 <not>
                                     <gate name="FT176.TOP" />
                                 </not>
                             </collect-formula>
-                            <fork functional-element="FE180">
+                            <fork functional-event="FE180">
                                 <path state="Failure">
                                     <collect-formula>
                                         <gate name="FT180.TOP" />
                                     </collect-formula>
-                                    <fork functional-element="FE178">
+                                    <fork functional-event="FE178">
                                         <path state="Failure">
                                             <collect-formula>
                                                 <gate name="FT178.TOP" />
                                             </collect-formula>
-                                            <fork functional-element="FE62">
+                                            <fork functional-event="FE62">
                                                 <path state="Success">
                                                     <collect-formula>
                                                         <not>
                                                             <gate name="FT62.TOP" />
                                                         </not>
                                                     </collect-formula>
-                                                    <fork functional-element="FE3">
+                                                    <fork functional-event="FE3">
                                                         <path state="Success">
                                                             <collect-formula>
                                                                 <not>
                                                                     <gate name="FT3.TOP" />
                                                                 </not>
                                                             </collect-formula>
-                                                            <fork functional-element="FE26">
+                                                            <fork functional-event="FE26">
                                                                 <path state="Success">
                                                                     <collect-formula>
                                                                         <not>
                                                                             <gate name="FT26.TOP" />
                                                                         </not>
                                                                     </collect-formula>
-                                                                    <fork functional-element="FE55">
+                                                                    <fork functional-event="FE55">
                                                                         <path state="Success">
                                                                             <collect-formula>
                                                                                 <not>
                                                                                     <gate name="FT55.TOP" />
                                                                                 </not>
                                                                             </collect-formula>
-                                                                            <fork functional-element="FE56">
+                                                                            <fork functional-event="FE56">
                                                                                 <path state="Failure">
                                                                                     <collect-formula>
                                                                                         <gate name="FT56.TOP" />
                                                                                     </collect-formula>
-                                                                                    <fork functional-element="FE57">
+                                                                                    <fork functional-event="FE57">
                                                                                         <path state="Failure">
                                                                                             <collect-formula>
                                                                                                 <gate name="FT57.TOP" />
@@ -96,7 +96,7 @@
                                                                             <collect-formula>
                                                                                 <gate name="FT55.TOP" />
                                                                             </collect-formula>
-                                                                            <fork functional-element="FE57">
+                                                                            <fork functional-event="FE57">
                                                                                 <path state="Failure">
                                                                                     <collect-formula>
                                                                                         <gate name="FT57.TOP" />
@@ -111,26 +111,26 @@
                                                                     <collect-formula>
                                                                         <gate name="FT26.TOP" />
                                                                     </collect-formula>
-                                                                    <fork functional-element="FE121">
+                                                                    <fork functional-event="FE121">
                                                                         <path state="Success">
                                                                             <collect-formula>
                                                                                 <not>
                                                                                     <gate name="FT121.TOP" />
                                                                                 </not>
                                                                             </collect-formula>
-                                                                            <fork functional-element="FE42">
+                                                                            <fork functional-event="FE42">
                                                                                 <path state="Success">
                                                                                     <collect-formula>
                                                                                         <not>
                                                                                             <gate name="FT42.TOP" />
                                                                                         </not>
                                                                                     </collect-formula>
-                                                                                    <fork functional-element="FE56">
+                                                                                    <fork functional-event="FE56">
                                                                                         <path state="Failure">
                                                                                             <collect-formula>
                                                                                                 <gate name="FT56.TOP" />
                                                                                             </collect-formula>
-                                                                                            <fork functional-element="FE44">
+                                                                                            <fork functional-event="FE44">
                                                                                                 <path state="Failure">
                                                                                                     <collect-formula>
                                                                                                         <gate name="FT44.TOP" />
@@ -163,14 +163,14 @@
                                                             <collect-formula>
                                                                 <gate name="FT3.TOP" />
                                                             </collect-formula>
-                                                            <fork functional-element="FE4">
+                                                            <fork functional-event="FE4">
                                                                 <path state="Success">
                                                                     <collect-formula>
                                                                         <not>
                                                                             <gate name="FT4.TOP" />
                                                                         </not>
                                                                     </collect-formula>
-                                                                    <fork functional-element="FE57">
+                                                                    <fork functional-event="FE57">
                                                                         <path state="Failure">
                                                                             <collect-formula>
                                                                                 <gate name="FT57.TOP" />
@@ -2325,7 +2325,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -3822,7 +3821,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -4994,7 +4992,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -6647,7 +6644,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -7979,7 +7975,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -9219,7 +9214,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -11218,7 +11212,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -12978,7 +12971,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
