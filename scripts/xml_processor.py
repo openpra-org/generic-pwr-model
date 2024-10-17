@@ -66,7 +66,7 @@ def process_all_xml_in_folder(folder_path):
 
 def main():
     """Main function to trigger the processing of XML files."""
-    folder_path = '/home/egemen-ubuntu/Repo/Gitlab/Enhancement-of-PRA-Tools/Model-Exchange/model-converter/temp/generic_PWR_V1.2'
+    folder_path = '.././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/'
     if os.path.exists(folder_path):
         print(f"Processing XML files in folder: {folder_path}")
         process_all_xml_in_folder(folder_path)
