@@ -626,15 +626,15 @@
                                                                                     <collect-formula>
                                                                                         <gate name="FT149.TOP"/>
                                                                                     </collect-formula>
-                                                                                            <fork functional-event="FE63">
-                                                                                                <path state="Failure">
-                                                                                                    <collect-formula>
-                                                                                                        <gate name="FT63.TOP"/>
-                                                                                                    </collect-formula>
-                                                                                                    <sequence
-                                                                                                            name="S870"/>
-                                                                                                </path>
-                                                                                            </fork>
+                                                                                    <fork functional-event="FE63">
+                                                                                        <path state="Failure">
+                                                                                            <collect-formula>
+                                                                                                <gate name="FT63.TOP"/>
+                                                                                            </collect-formula>
+                                                                                            <sequence
+                                                                                                    name="S870"/>
+                                                                                        </path>
+                                                                                    </fork>
                                                                                 </path>
                                                                             </fork>
                                                                         </path>
