@@ -365,6 +365,7 @@
                                                                         </path>
                                                                     </fork>
                                                                 </path>
+
                                                                 <path state="Failure">
                                                                     <collect-formula>
                                                                         <gate name="FT147.TOP"/>
@@ -2737,7 +2738,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3"/>
                 <gate name="G7"/>
                 <gate name="G305"/>
             </or>
@@ -3686,7 +3686,6 @@
         </define-gate>
         <define-gate name="G264" role="private">
             <or>
-                <gate name="G11"/>
                 <gate name="G12"/>
                 <gate name="G13"/>
             </or>
@@ -4264,7 +4263,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3"/>
                 <gate name="G7"/>
                 <gate name="G305"/>
             </or>
@@ -5438,7 +5436,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3"/>
                 <gate name="G7"/>
                 <gate name="G305"/>
             </or>
@@ -6590,7 +6587,7 @@
         </define-gate>
         <define-gate name="G227" role="private">
             <or>
-                <gate name="G10"/>
+                <basic-event name="BE0"/>
                 <gate name="G749"/>
             </or>
         </define-gate>
@@ -7137,7 +7134,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3"/>
                 <gate name="G7"/>
                 <gate name="G305"/>
             </or>
@@ -8388,7 +8384,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3"/>
                 <gate name="G7"/>
                 <gate name="G305"/>
             </or>
@@ -9630,7 +9625,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3"/>
                 <gate name="G7"/>
                 <gate name="G305"/>
             </or>
@@ -11632,7 +11626,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3"/>
                 <gate name="G7"/>
                 <gate name="G305"/>
             </or>
@@ -13241,7 +13234,6 @@
         </define-gate>
         <define-gate name="G303" role="private">
             <or>
-                <gate name="G21"/>
                 <gate name="G22"/>
                 <gate name="G23"/>
                 <gate name="G881"/>
@@ -13541,7 +13533,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3"/>
                 <gate name="G7"/>
                 <gate name="G305"/>
             </or>
@@ -14821,7 +14812,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3"/>
                 <gate name="G7"/>
                 <gate name="G305"/>
             </or>
@@ -16046,7 +16036,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3"/>
                 <gate name="G7"/>
                 <gate name="G305"/>
             </or>
@@ -16758,7 +16747,7 @@
     <define-fault-tree name="FT181">
         <define-gate name="TOP" role="private">
             <or>
-                <basic-event name="BE0"/>
+                <basic-event name="BE10"/>
                 <basic-event name="BE0"/>
             </or>
         </define-gate>
