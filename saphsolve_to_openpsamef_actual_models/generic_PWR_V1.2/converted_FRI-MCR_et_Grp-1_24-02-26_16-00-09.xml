@@ -1,13 +1,13 @@
 <opsa-mef>
     <define-initiating-event name="INIT3975" event-tree="FRI-MCR" />
     <define-event-tree name="FRI-MCR">
+        <define-functional-event name="FE169" />
         <define-functional-event name="FE62" />
+        <define-functional-event name="FE222" />
         <define-functional-event name="FE83" />
         <define-functional-event name="FE104" />
         <define-functional-event name="FE106" />
         <define-functional-event name="FE149" />
-        <define-functional-event name="FE169" />
-        <define-functional-event name="FE222" />
         <define-sequence name="S1368" />
         <define-sequence name="S1369" />
         <define-sequence name="S1370" />
@@ -392,7 +392,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -1495,11 +1494,6 @@
                 <basic-event name="BE3819" />
             </and>
         </define-gate>
-        <define-gate name="G287" role="private">
-            <or>
-                <gate name="G2" />
-            <basic-event name="BE0" /></or>
-        </define-gate>
         <define-gate name="G300" role="private">
             <or>
                 <gate name="G3" />
@@ -2403,7 +2397,6 @@
         </define-gate>
         <define-gate name="G303" role="private">
             <or>
-                <gate name="G21" />
                 <gate name="G22" />
                 <gate name="G23" />
                 <gate name="G881" />
@@ -2423,7 +2416,14 @@
             <basic-event name="BE0" /></or>
         </define-gate>
     </define-fault-tree>
-    <define-fault-tree name="FT169" />
+    <define-fault-tree name="FT169">
+        <define-gate name="TOP" role="private">
+            <or>
+                <basic-event name="BE3456"/>
+                <basic-event name="BE0"/>
+            </or>
+        </define-gate>
+    </define-fault-tree>
     <define-fault-tree name="FT222">
         <define-gate name="TOP" role="private">
             <or>
