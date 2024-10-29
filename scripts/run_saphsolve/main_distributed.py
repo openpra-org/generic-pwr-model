@@ -62,8 +62,8 @@ if __name__ == "__main__":
     json_files = None
 
     if rank == 0:
-        input_directory = r"C:\Users\egeme\Desktop\repo\Gitlab\Enhancement-of-PRA-Tools\Model-Exchange\model-converter\saphsolve_actual_models"
-        output_directory = r"C:\Users\egeme\Desktop\repo\Gitlab\Enhancement-of-PRA-Tools\Model-Exchange\model-converter\output_saphsolve_actual_models"
+        input_directory ="..\.\saphsolve_actual_models"
+        output_directory = "..\.\model-converter\output_saphsolve_actual_models"
 
         # Ensure the output directory exists; if not, create it
         if not os.path.exists(output_directory):

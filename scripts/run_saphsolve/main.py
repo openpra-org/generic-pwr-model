@@ -35,8 +35,8 @@ def solve_json_file(input_file_path, output_directory):
 
 
 def main():
-    input_directory = r"C:\Users\egeme\Desktop\repo\Gitlab\Enhancement-of-PRA-Tools\Model-Exchange\model-converter\dumped_saphsolve_actual_models"
-    output_directory = r"C:\Users\egeme\Desktop\repo\Gitlab\Enhancement-of-PRA-Tools\Model-Exchange\model-converter\output_dumped_saphsolve_actual_models"
+    input_directory = "..\.\dumped_saphsolve_actual_models"
+    output_directory = "..\.\output_dumped_saphsolve_actual_models"
 
     # List all JSON files in the input directory
     json_files = [file for file in os.listdir(input_directory) if file.endswith('.JSInp')]
