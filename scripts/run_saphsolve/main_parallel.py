@@ -45,8 +45,8 @@ def solve_files_in_thread(files, input_directory, output_directory):
 
 
 def main():
-    input_directory = r"C:\Users\egeme\Desktop\repo\Gitlab\Enhancement-of-PRA-Tools\Model-Exchange\model-converter\saphsolve_actual_models\generic_PWR_V1.2"
-    output_directory = r"C:\Users\egeme\Desktop\repo\Gitlab\Enhancement-of-PRA-Tools\Model-Exchange\model-converter\output_saphsolve_actual_models\generic_PWR_V1.2"
+    input_directory = "..\.\saphsolve_actual_models\generic_PWR_V1.2"
+    output_directory = "..\.\output_saphsolve_actual_models\generic_PWR_V1.2"
 
     # List all JSON files in the input directory
     json_files = [file for file in os.listdir(input_directory) if file.endswith('.JSInp')]
