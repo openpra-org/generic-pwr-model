@@ -47,7 +47,7 @@
 			<label>LPI-FT</label>
 		</define-functional-event>
         <define-functional-event name="FE4">
-			<label>F&B-FT</label>
+			<label>F&amp;B-FT</label>
 		</define-functional-event>
         <define-functional-event name="FE141">
 			<label>RCSPRESS-FT</label>
