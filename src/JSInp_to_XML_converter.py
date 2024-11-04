@@ -154,11 +154,16 @@ class JSONtoXMLConverter:
         event_tree = EventTree(event_tree_name)
 
         # Iterate over both lists simultaneously
-        functional_event_list = []
+        functional_event_id_list = []
+        functional_event_name_list =[]
         for functional_event in sysgatelist:
-            functional_event_name = "FE"+str(functional_event.id)
-            event_tree.functional_events.append(functional_event_name)
-            functional_event_list.append(functional_event_name)
+            functional_event_id = "FE"+str(functional_event.id)
+            functional_event_name=str(functional_event.name)
+            event_tree.functional_events_id.append(functional_event_id)
+            event_tree.functional_events_name.append(functional_event_name)
+            functional_event_id_list.append(functional_event_id)
+            functional_event_name_list.append(functional_event_name)
+
 
         faulttreelist = self.parsed_json_object.saphiresolveinput.get("faulttreelist", [])
         top_gate_list = []

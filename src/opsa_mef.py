@@ -5,7 +5,8 @@ from xml.sax.saxutils import escape
 class EventTree:
     def __init__(self, name):
         self.name = name
-        self.functional_events = []
+        self.functional_events_id = []
+        self.functional_events_name =[]
         self.sequences = []
         self.initial_state = {}
 
@@ -13,9 +14,13 @@ class EventTree:
 
         event_tree_element = ET.Element('define-event-tree', {'name': self.name})
 
-        for functional_event in self.functional_events:
+        # Iterate over both functional events and their corresponding labels
+        for functional_event, functional_event_name in zip(self.functional_events_id, self.functional_events_name):
+            # Create the functional event element with the corresponding label
             functional_event_element = ET.SubElement(event_tree_element, 'define-functional-event',
                                                      {'name': functional_event})
+            label_element = ET.SubElement(functional_event_element, 'label')
+            label_element.text = functional_event_name  # Set label text from the corresponding name list
 
         for sequence in self.sequences:
             sequence_element = ET.SubElement(event_tree_element, 'define-sequence', {'name': sequence})
