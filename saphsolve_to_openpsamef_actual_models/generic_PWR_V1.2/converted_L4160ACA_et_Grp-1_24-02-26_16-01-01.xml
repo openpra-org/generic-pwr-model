@@ -1,25 +1,25 @@
 <opsa-mef>
     <define-initiating-event name="INIT2935" event-tree="L4160ACA" />
     <define-event-tree name="L4160ACA">
-        <define-functional-event name="FE3" />
-        <define-functional-event name="FE4" />
-        <define-functional-event name="FE18" />
-        <define-functional-event name="FE26" />
-        <define-functional-event name="FE42" />
-        <define-functional-event name="FE51" />
-        <define-functional-event name="FE52" />
-        <define-functional-event name="FE55" />
-        <define-functional-event name="FE56" />
-        <define-functional-event name="FE57" />
         <define-functional-event name="FE62" />
+        <define-functional-event name="FE3" />
+        <define-functional-event name="FE118" />
         <define-functional-event name="FE101" />
         <define-functional-event name="FE110" />
-        <define-functional-event name="FE118" />
+        <define-functional-event name="FE52" />
+        <define-functional-event name="FE147" />
+        <define-functional-event name="FE149" />
+        <define-functional-event name="FE51" />
+        <define-functional-event name="FE26" />
+        <define-functional-event name="FE42" />
+        <define-functional-event name="FE4" />
         <define-functional-event name="FE141" />
         <define-functional-event name="FE142" />
         <define-functional-event name="FE143" />
-        <define-functional-event name="FE147" />
-        <define-functional-event name="FE149" />
+        <define-functional-event name="FE18" />
+        <define-functional-event name="FE55" />
+        <define-functional-event name="FE56" />
+        <define-functional-event name="FE57" />
         <define-sequence name="S37" />
         <define-sequence name="S38" />
         <define-sequence name="S39" />
@@ -2725,7 +2725,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -3670,7 +3669,6 @@
         </define-gate>
         <define-gate name="G264" role="private">
             <or>
-                <gate name="G11" />
                 <gate name="G12" />
                 <gate name="G13" />
             </or>
@@ -4248,7 +4246,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -5420,7 +5417,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -6562,7 +6558,7 @@
         </define-gate>
         <define-gate name="G227" role="private">
             <or>
-                <gate name="G10" />
+                <basic-event name="BE0" />
                 <gate name="G749" />
             </or>
         </define-gate>
@@ -7105,7 +7101,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -8353,7 +8348,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -9593,7 +9587,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -11592,7 +11585,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -13192,7 +13184,6 @@
         </define-gate>
         <define-gate name="G303" role="private">
             <or>
-                <gate name="G21" />
                 <gate name="G22" />
                 <gate name="G23" />
                 <gate name="G881" />
@@ -13490,7 +13481,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -14770,7 +14760,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
@@ -15994,7 +15983,6 @@
         </define-gate>
         <define-gate name="G300" role="private">
             <or>
-                <gate name="G3" />
                 <gate name="G7" />
                 <gate name="G305" />
             </or>
