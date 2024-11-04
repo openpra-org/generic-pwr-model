@@ -1,29 +1,75 @@
 <opsa-mef>
     <define-initiating-event name="INIT41" event-tree="EQK-BIN1"/>
     <define-event-tree name="EQK-BIN1">
-        <define-functional-event name="FE12"/>
-        <define-functional-event name="FE14"/>
-        <define-functional-event name="FE41"/>
-        <define-functional-event name="FE88"/>
-        <define-functional-event name="FE62"/>
-        <define-functional-event name="FE3"/>
-        <define-functional-event name="FE118"/>
-        <define-functional-event name="FE101"/>
-        <define-functional-event name="FE110"/>
-        <define-functional-event name="FE52"/>
-        <define-functional-event name="FE147"/>
-        <define-functional-event name="FE149"/>
-        <define-functional-event name="FE51"/>
-        <define-functional-event name="FE26"/>
-        <define-functional-event name="FE42"/>
-        <define-functional-event name="FE4"/>
-        <define-functional-event name="FE141"/>
-        <define-functional-event name="FE142"/>
-        <define-functional-event name="FE143"/>
-        <define-functional-event name="FE18"/>
-        <define-functional-event name="FE55"/>
-        <define-functional-event name="FE56"/>
-        <define-functional-event name="FE57"/>
+        <define-functional-event name="FE12">
+			<label>CD-EQ1-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE14">
+			<label>LLOCA-EQ1-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE41">
+			<label>SLOCA-EQ1-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE88">
+			<label>LOOP-EQ1-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE62">
+			<label>RPS-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE3">
+			<label>AFW-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE118">
+			<label>PORV-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE101">
+			<label>MFW-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE110">
+			<label>PORV-1-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE52">
+			<label>LOSC-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE147">
+			<label>RCPT-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE149">
+			<label>RCPSLOCA-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE51">
+			<label>ACC-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE26">
+			<label>HPI-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE42">
+			<label>LPI-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE4">
+			<label>F&B-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE141">
+			<label>RCSPRESS-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE142">
+			<label>AFW-A-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE143">
+			<label>BORATION-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE18">
+			<label>PORV-A-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE55">
+			<label>SSC-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE56">
+			<label>RHR-FT</label>
+		</define-functional-event>
+        <define-functional-event name="FE57">
+			<label>HPR-FT</label>
+		</define-functional-event>
         <define-sequence name="S84"/>
         <define-sequence name="S85"/>
         <define-sequence name="S86"/>
