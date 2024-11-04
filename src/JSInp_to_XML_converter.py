@@ -181,28 +181,6 @@ class JSONtoXMLConverter:
             logic_list = sequence.logiclist
             logiclist.append(logic_list)
 
-        logiclist = self.convert_logiclist_to_binary(logiclist)
-
-        sq_count = self.parsed_json_object.saphiresolveinput.get('header', {}).sqcount
-        # Get the current directory of the Python script
-        current_directory = os.path.dirname(os.path.abspath(__file__))
-        file_path = os.path.join(current_directory, 'sequence_data.json')
-        # Load existing data from the JSON file (if any)
-        # Load existing data from the JSON file (if any)
-        existing_data = {}
-        try:
-            with open(file_path, 'r') as f:
-                existing_data = json.load(f)
-        except FileNotFoundError:
-            existing_data = {}
-
-        # Update the existing data with the new data
-        existing_data[event_tree_name+"-"+str (sq_count)] = logiclist
-
-        # Save the updated dictionary to a JSON file
-        with open(file_path, 'w') as f:
-            json.dump(existing_data, f)
-
         return event_tree
 
     def decimal_to_binary(self, dec):
