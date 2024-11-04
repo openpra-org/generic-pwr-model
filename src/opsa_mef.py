@@ -20,7 +20,7 @@ class EventTree:
             functional_event_element = ET.SubElement(event_tree_element, 'define-functional-event',
                                                      {'name': functional_event})
             label_element = ET.SubElement(functional_event_element, 'label')
-            label_element.text = functional_event_name  # Set label text from the corresponding name list
+            label_element.text = escape(functional_event_name)  # Set label text from the corresponding name list
 
         for sequence in self.sequences:
             sequence_element = ET.SubElement(event_tree_element, 'define-sequence', {'name': sequence})
