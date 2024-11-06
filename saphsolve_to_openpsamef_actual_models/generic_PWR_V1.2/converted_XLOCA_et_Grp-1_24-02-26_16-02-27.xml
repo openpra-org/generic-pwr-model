@@ -19,7 +19,7 @@
             <define-gate name="TOP" role="private">
                 <or>
                     <basic-event name="BE0"/>
-                    <basic-event name="BE1"/>
+                    <basic-event name="BE00"/>
                 </or>
             </define-gate>
     </define-fault-tree>
@@ -32,7 +32,7 @@
             <label>TEMP-BE-TO-ADD-GATES-WITH-A-SINGLE-ELEMENT</label>
             <float value="0.000000E+00"/>
         </define-basic-event>
-        <define-basic-event name="BE1">
+        <define-basic-event name="BE00">
             <label>TEMP-BE-TO-ADD-GATES-WITH-A-SINGLE-ELEMENT</label>
             <float value="1.000000E+00"/>
         </define-basic-event>
