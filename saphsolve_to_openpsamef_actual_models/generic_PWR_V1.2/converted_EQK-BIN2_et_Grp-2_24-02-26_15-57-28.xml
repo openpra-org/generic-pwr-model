@@ -1,12 +1,12 @@
 <opsa-mef>
     <define-initiating-event name="INIT42" event-tree="EQK-BIN2" />
     <define-event-tree name="EQK-BIN2">
-        <define-functional-event name="FE90" />
-        <define-functional-event name="FE93" />
-        <define-functional-event name="FE99" />
-        <define-functional-event name="FE51" />
-        <define-functional-event name="FE42" />
-        <define-functional-event name="FE44" />
+        <define-functional-event name="FE90"><label>CD-EQ2-FT</label></define-functional-event>
+        <define-functional-event name="FE93"><label>LLOCA-EQ2-FT</label></define-functional-event>
+        <define-functional-event name="FE99"><label>LOOP-EQ2-FT</label></define-functional-event>
+        <define-functional-event name="FE51"><label>ACC-FT</label></define-functional-event>
+        <define-functional-event name="FE42"><label>LPI-FT</label></define-functional-event>
+        <define-functional-event name="FE44"><label>LPR-FT</label></define-functional-event>
         <define-sequence name="S723" />
         <define-sequence name="S724" />
         <define-sequence name="S725" />

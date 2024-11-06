@@ -1,12 +1,12 @@
 <opsa-mef>
     <define-initiating-event name="INIT271" event-tree="EQK-BIN6" />
     <define-event-tree name="EQK-BIN6">
-        <define-functional-event name="FE100" />
-        <define-functional-event name="FE102" />
-        <define-functional-event name="FE129" />
-        <define-functional-event name="FE51" />
-        <define-functional-event name="FE42" />
-        <define-functional-event name="FE44" />
+        <define-functional-event name="FE100"><label>CD-EQ6-FT</label></define-functional-event>
+        <define-functional-event name="FE102"><label>LLOCA-EQ6-FT</label></define-functional-event>
+        <define-functional-event name="FE129"><label>LOOP-EQ6-FT</label></define-functional-event>
+        <define-functional-event name="FE51"><label>ACC-FT</label></define-functional-event>
+        <define-functional-event name="FE42"><label>LPI-FT</label></define-functional-event>
+        <define-functional-event name="FE44"><label>LPR-FT</label></define-functional-event>
         <define-sequence name="S1041" />
         <define-sequence name="S1042" />
         <define-sequence name="S1043" />
@@ -3229,7 +3229,7 @@
         </define-gate>
         <define-gate name="G227" role="private">
             <or>
-                <basic-event name="BE0"/>
+                <basic-event name="BE0" />
                 <gate name="G749" />
             </or>
         </define-gate>

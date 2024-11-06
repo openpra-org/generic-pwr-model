@@ -1,9 +1,9 @@
 <opsa-mef>
     <define-initiating-event name="INIT3985" event-tree="ISL-RHR-HL" />
     <define-event-tree name="ISL-RHR-HL">
-        <define-functional-event name="FE69" />
-        <define-functional-event name="FE167" />
-        <define-functional-event name="FE71" />
+        <define-functional-event name="FE69"><label>ISL-RPT-RHR-FT</label></define-functional-event>
+        <define-functional-event name="FE167"><label>ISL-DIAG-FT</label></define-functional-event>
+        <define-functional-event name="FE71"><label>ISL-RHR-HL-REC-FT</label></define-functional-event>
         <define-sequence name="S3" />
         <define-sequence name="S4" />
         <initial-state>

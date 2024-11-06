@@ -1,13 +1,13 @@
 <opsa-mef>
     <define-initiating-event name="INIT3975" event-tree="FRI-MCR" />
     <define-event-tree name="FRI-MCR">
-        <define-functional-event name="FE169" />
-        <define-functional-event name="FE62" />
-        <define-functional-event name="FE222" />
-        <define-functional-event name="FE83" />
-        <define-functional-event name="FE104" />
-        <define-functional-event name="FE106" />
-        <define-functional-event name="FE149" />
+        <define-functional-event name="FE169"><label>EVAC</label></define-functional-event>
+        <define-functional-event name="FE62"><label>RPS-FT</label></define-functional-event>
+        <define-functional-event name="FE222"><label>ASD-XHE-FT</label></define-functional-event>
+        <define-functional-event name="FE83"><label>EPS-FT</label></define-functional-event>
+        <define-functional-event name="FE104"><label>AFW-L-FT</label></define-functional-event>
+        <define-functional-event name="FE106"><label>PORV-L-FT</label></define-functional-event>
+        <define-functional-event name="FE149"><label>RCPSLOCA-FT</label></define-functional-event>
         <define-sequence name="S1368" />
         <define-sequence name="S1369" />
         <define-sequence name="S1370" />
@@ -2419,8 +2419,8 @@
     <define-fault-tree name="FT169">
         <define-gate name="TOP" role="private">
             <or>
-                <basic-event name="BE3456"/>
-                <basic-event name="BE0"/>
+                <basic-event name="BE3456" />
+                <basic-event name="BE0" />
             </or>
         </define-gate>
     </define-fault-tree>
