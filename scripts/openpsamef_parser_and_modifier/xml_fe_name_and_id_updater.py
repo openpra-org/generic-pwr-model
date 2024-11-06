@@ -95,9 +95,9 @@ def main(csv_file, input_folder, target_folder):
 
 
 # Define paths for the CSV file, input folder, and target folder
-csv_file = '.././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/fe_name_and_id.csv'
-input_folder = '.././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/'
-target_folder = '.././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/fe_updated'
+csv_file = '../././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/fe_name_and_id_V1.2.csv'
+input_folder = '../././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/'
+target_folder = '../././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/fe_updated'
 
 # Run the main function
 if __name__ == "__main__":
