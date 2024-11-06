@@ -96,9 +96,9 @@ def main(xml_folder, output_csv, readme_file):
 
 
 # Define paths for XML folder and output files
-xml_folder = '.././saphsolve_to_openpsamef_actual_models/dump/'
-output_csv = '.././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/be_name_and_id.csv'
-readme_file = '.././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/README_be_name_and_id.md'
+xml_folder = '../././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/'
+output_csv = '../././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/be_name_label_and_value_V1.2.csv'
+readme_file = '../././saphsolve_to_openpsamef_actual_models/generic_PWR_V1.2/be_name_label_and_value_V1.2.md'
 
 # Run the main function
 if __name__ == "__main__":
