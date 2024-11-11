@@ -1,4 +1,6 @@
 # Generic PWR Open-PSA Models
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14070453.svg)](https://doi.org/10.5281/zenodo.14070454)
+
 
 <!-- TOC -->
 * [Generic PWR Open-PSA Models](#generic-pwr-open-psa-models)
