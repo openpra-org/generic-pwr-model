@@ -65,7 +65,6 @@ At present, the model considers various initiating events, including seismic act
 | 53  | TOR-BIN3         | TORNADO EVENT BIN-3 (> 200 MPH)                                             | 95,064    | 1.296E-10   | 63   |
 | 54  | TRANS            | TRANSIENT                                                                   | 4,178,502 | 1.525E-07   | 29   |
 | 55  | XLOCA            | EXCESSIVE LOCA                                                              | 1         | 1.000E-07   | 1    |
-|-----|------------------|-----------------------------------------------------------------------------|-----------|-------------|------|
 |     | **TOTAL**        |                                                                             | 28,559,059|             | 1965 |
 
 ## Additional References
